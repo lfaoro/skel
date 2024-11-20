@@ -1,0 +1,14 @@
+{
+  "BraveRewardsDisabled": true,
+  "SyncDisabled": true,
+  "MetricsReportingEnabled": false,
+  "SearchSuggestEnabled": false,
+  "BrowserSignin": 0,
+  "BuiltInDnsClientEnabled": false,
+  "DefaultGeolocationSetting": 2,
+  "AllowDinosaurEasterEgg": true,
+  "DefaultSearchProviderEnabled": true,
+  "DefaultSearchProviderName": "https://searx.be",
+  "DefaultSearchProviderSearchURL": "https://searx.be/search?q={searchTerms}",
+  "BraveWalletDisabled": true
+}

