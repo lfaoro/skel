@@ -31,7 +31,6 @@ let
     monero-gui
     dbeaver-bin
     transmission_3-gtk
-    wire-desktop
     tor-browser
     sqlitebrowser
     gimp imagemagick
@@ -123,7 +122,7 @@ let
     zmap
     masscan
     rustscan
-    dbus-map
+    # dbus-map
     netcat
     socat
     websocat
@@ -150,7 +149,6 @@ let
 
     # Protocl bufers
     protobuf
-    buf-language-server
     buf
     protoc-gen-go
     protoc-gen-go-grpc
@@ -187,14 +185,14 @@ let
   ];
 
   home.file = {
-    ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/.config/alacritty";
-    ".config/helix".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/.config/helix";
-    ".config/htop".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/.config/htop";
-    ".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/etc/.tmux.conf";
-    ".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/etc/.bashrc";
-    ".aliasrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/etc/.aliasrc";
-    ".config/lynx/lynx.cfg".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/etc/lynx.cfg";
-    ".config/lynx/lynx.lss".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/etc/lynx.lss";
+    ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/alacritty";
+    ".config/helix".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/helix";
+    ".config/htop".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/htop";
+    ".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/.tmux.conf";
+    ".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/.bashrc";
+    ".aliasrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/.aliasrc";
+    ".config/lynx/lynx.cfg".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/lynx.cfg";
+    ".config/lynx/lynx.lss".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/lynx.lss";
   };
 
   home.sessionVariables = {

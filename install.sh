@@ -24,7 +24,7 @@ curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/ala
 # set locale
 localectl set-locale LANG=en_US.UTF-8
 
-# enforce browser policies
+# enforce browser policy
 sudo mkdir -p /etc/brave/policies/managed
 sudo cp ./chromium-policy.json /etc/brave/policies/managed/policy.json
 
