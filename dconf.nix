@@ -4,7 +4,7 @@
 with lib.hm.gvariant;
 
 let
-  configOpt = import ./tmp/config.nix;
+  configOpt = import ./config.nix;
 in {
   dconf.settings = {
     "apps/update-manager" = {

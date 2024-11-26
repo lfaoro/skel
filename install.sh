@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 set -ex
-tmpDir="tmp"
-mkdir -p $tmpDir
 
 # git clone https://github.com/lfaoro/skel.git
 # git clone git@github.com:lfaoro/skel.git
@@ -51,28 +49,29 @@ fi
 mkdir -p ~/.config/home-manager
 ln -sf ~/skel/home.nix ~/.config/home-manager/home.nix
 
-# backup user.nix if exists
-if [[ -e "$tmpDir/user.nix" ]]; then
-  mv $tmpDir/user.nix $tmpDir/user.nix.bak
+# backup config.nix if exists
+if [[ -e "./config.nix" ]]; then
+  mv ./config.nix ./config.nix.bak
 fi
-# create user.nix based on current user
+
 echo "
-{
-  home.username = \"$USER\";
-  home.homeDirectory = \"$HOME\";
-}"> $tmpDir/user.nix
+"
 
 # create config.nix
 echo "
 {
+  username = \"$USER\";
+  homedir = \"$HOME\";
 	useDevTools = false;
 	useDconf = false;
 	useGUI = false;
 	swapAltWin = false;
-}"> $tmpDir/config.nix
+}"> ./config.nix
 
 home-manager switch -b bak
 systemctl --user start cronjobs.service
+
+\zsh
 
 # update-alternatives --config editor
 sudo ln -fs "$(which hx)" /etc/alternatives/editor
