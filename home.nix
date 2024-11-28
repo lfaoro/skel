@@ -352,7 +352,7 @@ let
     initExtraFirst = ''
       source /etc/zshrc || true
       source "$HOME/.aliasrc" || :
-      source "$HOME/.secrets" || :
+      source "$HOME/.sec/keys" || :
 
       # disable tty flow control XOFF/XON
       # https://en.wikipedia.org/wiki/Software_flow_control
@@ -378,7 +378,7 @@ let
       gd = "git diff --unified=5 --diff-filter=M";
       gp = "git push";
       gl = "git log --stat";
-      gacp = "git add . && git commit -m 'update' && git push";
+      gcp = "git add . && git commit -m 'update' && git push";
 
       ls = "exa";
       l = "exa -as modified --group-directories-first";

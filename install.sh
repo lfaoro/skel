@@ -10,11 +10,8 @@ sudo apt install -y curl git zsh make gcc gnome-sushi linux-headers-generic dkms
 snap install mpv ffmpeg vlc
 sudo chown -R "$USER": .
 
-# store secret env keys here
-var SECRETS_FILE="$HOME/.secrets"
-if [[ ! -e "$SECRETS_FILE" ]]; then
-  echo "# export SECRET_VAR=SECRET_KEY" >"$SECRETS_FILE"
-fi
+mkdir -p "$HOME/.sec"
+touch "$HOME/.sec/keys"
 
 # install alacritty terminfo
 curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info | tic -x -
