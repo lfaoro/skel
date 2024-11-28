@@ -23,6 +23,7 @@ let
     go
     gopls
     sqlc
+    gitui
   ] else [];
   guiPackages = if configOpt.useGUI then with pkgs; [
     # GUI
