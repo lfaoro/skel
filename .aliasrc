@@ -1,5 +1,15 @@
-export QT_QPA_PLATFORM=xcb obs
+alias cpu="top -bn 1 -i -c"
+alias detect-audio="pacmd unload-module module-udev-detect && pacmd load-module module-udev-detect"
+alias .='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+alias bathelp='bat --plain --language=help'
 
+alias tb="nc termbin.com 9999 | xclip -sel c"
+
+alias upgrade="sudo apt update && sudo apt upgrade -y && nix-channel --update && hm switch"
+alias clean="sudo apt autoremove && nix-store --gc && nix-collect-garbage -d"
+alias cleanOldKernels="dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' |awk '{ print $2 }' |grep -v "$(uname -r)" |xargs sudo apt purge --yes"
+
+alias ssh='TERM=xterm-256color ssh'
 hssh()
 {
     local ttyp
@@ -11,17 +21,15 @@ hssh()
         "unset SSH_CLIENT SSH_CONNECTION; TERM=xterm-256color BASH_HISTORY=/dev/null exec -a [ntp] script -qc 'exec -a [uid] /bin/bash -i' /dev/null"
     stty "${ttyp}"
 }
+
 path() {
     echo -e ${PATH//:/\\n}
 }
+
 batdiff() {
     git diff --name-only --relative --diff-filter=d | xargs bat --diff
 }
 
-alias cpu="top -bn 1 -i -c"
-alias detect-audio="pacmd unload-module module-udev-detect && pacmd load-module module-udev-detect"
-alias .='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
-alias bathelp='bat --plain --language=help'
 h() {
     "$@" --help 2>&1 | bathelp
 }
@@ -37,8 +45,3 @@ sr() {
     rg -l "$search" --type go |xargs sed -i "'s/$search/$replace/g'"
 }
 
-alias tb="nc termbin.com 9999 | xclip -sel c"
-alias ssh='TERM=xterm-256color ssh'
-alias upgrade="sudo apt update && sudo apt upgrade -y && nix-channel --update && hm switch"
-alias clean="sudo apt autoremove && nix-store --gc && nix-collect-garbage -d"
-alias cleanOldKernels="dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' |awk '{ print $2 }' |grep -v "$(uname -r)" |xargs sudo apt purge --yes"
