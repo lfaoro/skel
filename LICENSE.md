@@ -1,29 +1,75 @@
-Copyright (c) 2024 Leonardo Faoro. All rights reserved.
+### Source Available with Commercial Use Restrictions License (SA/CUR)
 
-Redistribution and use in source and binary forms, with or without
-modification, are permitted provided that the following conditions are
-met:
+**Copyright (c) 2024 Leonardo Faoro**
 
-- Redistributions of source code must retain the above copyright
-notice, this list of conditions and the following disclaimer.
+**Preamble**
 
-- Redistributions in binary form must reproduce the above
-copyright notice, this list of conditions and the following disclaimer
-in the documentation and/or other materials provided with the
-distribution.
+This license permits the use, modification, and distribution of the software 
+for non-commercial purposes, safeguarding commercial use and ensuring 
+attribution.
 
-- Neither the name of Leonardo Faoro nor the names of its
-contributors may be used to endorse or promote products derived from
-this software without specific prior written permission.
+#### 1. Definitions
 
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-"AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
-LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
-A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
-OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
-LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
-DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
-THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+- **"Software"**: All contents of this repository, including source code, 
+  binaries, documentation, and any derivative works.
+- **"Commercial Use"**: Any use of the Software for direct financial gain, 
+  including selling, leasing, or providing services for a fee.
+
+#### 2. Grant of Rights
+
+You are granted a non-exclusive, royalty-free, worldwide license to:
+
+- **Use**: Employ the Software for personal or non-commercial purposes.
+- **Modify**: Alter or amend the Software.
+- **Distribute**: Share the Software or modifications for non-commercial 
+  purposes, provided you:
+    - Include this license in all copies.
+    - Indicate changes made to the original Software.
+
+#### 3. Restrictions
+
+- **Commercial Use**: Not allowed without a separate commercial license. 
+  Inquiries to me(at)leonardofaoro.com.
+- **Patent Grant**: No patent license is granted except where necessary for 
+  permitted use.
+
+#### 4. Attribution
+
+You must give credit to Leonardo Faoro, link to this license, and 
+note changes. Do not suggest endorsement by Leonardo Faoro.
+
+#### 5. Governing Principles
+
+Interpretation under the **UNIDROIT Principles of International Commercial 
+Contracts** (UPICC). Resolve disputes in good faith if UPICC guidance is 
+absent.
+
+#### 6. Warranty Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR PURPOSE, TITLE, NON-
+INFRINGEMENT. LIABILITY FOR DAMAGES FROM SOFTWARE USE IS EXCLUDED.
+
+#### 7. Termination
+
+License terminates on breach. Sections 4, 5, 6, and 7 survive termination.
+
+#### 8. Dispute Resolution
+
+Disputes will be resolved through:
+
+- **Negotiation**: Attempt resolution through good faith talks.
+- **Mediation**: If negotiation fails, mediate under ICC rules.
+- **Arbitration**: Arbitration under ICC Rules, in Geneva, in English if 
+  mediation fails.
+
+#### 9. Acceptance
+
+Using, copying, modifying, or distributing the Software implies acceptance 
+of this License. If you disagree, do not use the Software.
+
+---
+
+Leonardo Faoro  
+me(at)leonardofaoro.com
+
