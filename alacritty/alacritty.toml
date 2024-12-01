@@ -1,4 +1,7 @@
-# import = ["/home/m/.config/alacritty/themes/nord.toml"]
+[general]
+import = [
+    # "~/.config/alacritty/themes/themes/papertheme.toml"
+]
 
 [cursor]
 unfocused_hollow = true
