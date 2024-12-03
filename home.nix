@@ -24,6 +24,8 @@ let
     gopls
     sqlc
     gitui
+    mercurial
+    gh # github CLI
   ] else [];
   guiPackages = if configOpt.useGUI then with pkgs; [
     # GUI
@@ -106,6 +108,7 @@ let
     sd # sed
     kalker # calc
     ticker # stocks
+    fim # framebuffer image viewer
     
     # monitoring
     htop ftop btop
@@ -188,7 +191,7 @@ let
     ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/alacritty";
     ".config/helix".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/helix";
     ".config/htop".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/htop";
-    ".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/.tmux.conf";
+    ".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/tmux/.tmux.conf";
     ".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/.bashrc";
     ".aliasrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/.aliasrc";
     ".config/lynx/lynx.cfg".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/lynx.cfg";

@@ -1,3 +1,5 @@
+export QT_QPA_PLATFORM=xcb
+
 alias cpu="top -bn 1 -i -c"
 alias detect-audio="pacmd unload-module module-udev-detect && pacmd load-module module-udev-detect"
 alias .='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'

@@ -8,7 +8,7 @@
   "DefaultGeolocationSetting": 2,
   "AllowDinosaurEasterEgg": true,
   "DefaultSearchProviderEnabled": true,
-  "DefaultSearchProviderName": "https://searxng.site/",
-  "DefaultSearchProviderSearchURL": "https://searxng.site/search?q={searchTerms}",
+  "DefaultSearchProviderName": "brave",
+  "DefaultSearchProviderSearchURL": "https://search.brave.com/search?q={searchTerms}",
   "BraveWalletDisabled": true
 }

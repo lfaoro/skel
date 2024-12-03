@@ -1,6 +1,6 @@
 [general]
 import = [
-    # "~/.config/alacritty/themes/themes/papertheme.toml"
+    "~/.config/alacritty/themes/themes/gruvbox.toml"
 ]
 
 [cursor]
@@ -12,6 +12,8 @@ shape = "Block"
 
 [font]
 size = 12
+offset.x = 0
+offset.y = 0
 
 [font.normal]
 family = "Fira Code"
@@ -63,8 +65,12 @@ args = ["-l", "-c", "tmux attach || tmux"]
 program = "/usr/bin/zsh"
 
 [window]
+# Setting decorations to 'none' removes all window borders and title bar.
 decorations = "none"
-dynamic_padding = true
+dynamic_padding = false
 opacity = 1
 startup_mode = "Maximized"
 
+[window.padding]
+x = 0
+y = 0

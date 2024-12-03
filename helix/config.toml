@@ -1,6 +1,7 @@
-theme = "nord"
+theme = "gruvbox_dark_hard"
 
 [editor]
+scrolloff = 0
 auto-completion = true
 idle-timeout = 0
 auto-format = true
@@ -10,6 +11,7 @@ auto-pairs = true
 bufferline = "always"
 cursorline = true
 cursorcolumn = false
+# gutters = []
 gutters = ["diff", "line-numbers", "diagnostics"]
 line-number = "absolute"
 
@@ -52,16 +54,18 @@ enable = true
 wrap-at-text-width = false
 
 [keys.normal]
+C-o = ["jump_backward"]
+C-i = ["jump_forward"]
+
 # S-g = 
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
 C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
 C-l = ["delete_selection", "paste_after"]
 C-h = ["delete_selection", "move_char_left", "paste_before"]
 C-r = [":config-reload", ":reload"]
-# C-o = [":open ~/.config/helix/config.toml"]
 C-space = ["completion"]
-"tab" = "goto_next_function" # Select and jump to the next function via Treesitter
-"S-tab" = "goto_prev_function" # Select and jump to the previous function via Treesitter 
+# "tab" = "goto_next_function" # Select and jump to the next function via Treesitter
+# "S-tab" = "goto_prev_function" # Select and jump to the previous function via Treesitter 
 # Use system clipboard
 Y = "yank_main_selection_to_clipboard"
 X = "extend_line_above"
@@ -70,12 +74,12 @@ C-ret = ["open_above", "normal_mode"]
 ret = ["open_below", "normal_mode"] 
 
 [keys.normal.space]
+z = ":toggle gutters.line-numbers.min-width 48 0"
 x = ":toggle whitespace.render all none"
-z = ":toggle gutters.line-numbers.min-width 48 3"
 
 [keys.normal."="]
 r = ":run-shell-command pwd;ls"
-m = ":run-shell-command make build"
+m = ":run-shell-command make"
 b = ":run-shell-command go build ."
 t = ":run-shell-command go test -v ./..."
 
