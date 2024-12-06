@@ -404,6 +404,8 @@ let
       fd = "fd -IH";
       duf = "duf --hide-fs tmpfs,devtmpfs";
       ping = "ping -B";
+      c = "cd";
+      mm = "mkdir";
 
       clip="xclip -sel c";
       k="kubectl";
