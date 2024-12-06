@@ -36,3 +36,7 @@ clean:
 
 clean-kernel:
 	dpkg --list |grep linux-image |grep -v "$(uname -r)" |cut -d' ' -f3 |xargs apt remove -y
+
+sub:
+	git submodule update --init --recursive
+

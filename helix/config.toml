@@ -1,4 +1,5 @@
 theme = "gruvbox_dark_hard"
+# theme = "nord"
 
 [editor]
 scrolloff = 0
@@ -14,26 +15,20 @@ cursorcolumn = false
 # gutters = []
 gutters = ["diff", "line-numbers", "diagnostics"]
 line-number = "absolute"
-
 mouse = true
 middle-click-paste = true
-
 true-color = true
 color-modes = true
-
 [editor.cursor-shape]
 insert = "bar"
 normal = "block"
 select = "underline"
-
 [editor.whitespace.render]
 tab = "all"
 space = "none"
-
 [editor.file-picker]
 hidden = false
 git-ignore = false
-
 [editor.statusline]
 left = ["mode","spinner","file-name","file-modification-indicator","selections"]
 center = ["diagnostics","workspace-diagnostics"]
@@ -42,18 +37,18 @@ separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
 mode.select = "SELECT"
-
 [editor.lsp]
 auto-signature-help = true
 display-messages = true
 display-inlay-hints = false
 display-signature-help-docs = true
-
 [editor.soft-wrap]
 enable = true
 wrap-at-text-width = false
 
 [keys.normal]
+f = ["find_till_char"]
+F = ["till_prev_char"]
 C-o = ["jump_backward"]
 C-i = ["jump_forward"]
 
@@ -64,6 +59,9 @@ C-l = ["delete_selection", "paste_after"]
 C-h = ["delete_selection", "move_char_left", "paste_before"]
 C-r = [":config-reload", ":reload"]
 C-space = ["completion"]
+C-a = ["increment"]
+C-A = ["decrement"]
+
 # "tab" = "goto_next_function" # Select and jump to the next function via Treesitter
 # "S-tab" = "goto_prev_function" # Select and jump to the previous function via Treesitter 
 # Use system clipboard

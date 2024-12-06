@@ -21,7 +21,7 @@ localectl set-locale LANG=en_US.UTF-8
 
 # enforce browser policy
 sudo mkdir -p /etc/brave/policies/managed
-sudo cp ./chromium-policy.json /etc/brave/policies/managed/policy.json
+sudo cp ./etc/chromium-policy.json /etc/brave/policies/managed/policy.json
 
 if [[ ! -e $(which nix) ]]; then
   # install nix package manager
@@ -51,9 +51,6 @@ if [[ -e "./config.nix" ]]; then
   mv ./config.nix ./config.nix.bak
 fi
 
-echo "
-"
-
 # create config.nix
 echo "
 {
@@ -65,12 +62,10 @@ echo "
 	swapAltWin = false;
 }"> ./config.nix
 
-home-manager switch -b bak
+# home-manager switch -b bak
 systemctl --user start cronjobs.service
 
 \zsh
 
 # update-alternatives --config editor
 sudo ln -fs "$(which hx)" /etc/alternatives/editor
-
-printf "restart your terminal"

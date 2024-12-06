@@ -26,6 +26,10 @@ let
     gitui
     mercurial
     gh # github CLI
+    taplo
+    # python 
+    python312Packages.python-lsp-server
+    black
   ] else [];
   guiPackages = if configOpt.useGUI then with pkgs; [
     # GUI
@@ -57,7 +61,7 @@ let
   # https://github.com/yrashk/nix-home/blob/master/home.nix
   home.username = configOpt.username;
   home.homeDirectory = configOpt.homedir;
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.11";
   home.keyboard.options = [ "caps:ctrl_modifier" ];
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
@@ -76,6 +80,8 @@ let
   home.packages = with pkgs; guiPackages ++ devTools ++ [
     # config
     nix-info
+    nix-tree
+    nix-du
     zsh-completions
     dconf2nix
     dconf
@@ -170,7 +176,6 @@ let
 
     # clouds
     # cloudflared
-    wrangler_1 # cloudflare workers
 
     # Language servers
     vscode-langservers-extracted # html/js
@@ -189,13 +194,15 @@ let
 
   home.file = {
     ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/alacritty";
-    ".config/helix".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/helix";
-    ".config/htop".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/htop";
     ".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/tmux/.tmux.conf";
-    ".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/.bashrc";
-    ".aliasrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/.aliasrc";
-    ".config/lynx/lynx.cfg".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/lynx.cfg";
-    ".config/lynx/lynx.lss".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/lynx.lss";
+    ".config/helix".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/helix";
+
+    ".config/htop".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/htop";
+    ".config/lynx/lynx.cfg".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/lynx/lynx.cfg";
+    ".config/lynx/lynx.lss".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/lynx/lynx.lss";
+
+    ".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/home/.bashrc";
+    ".aliasrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/home/.aliasrc";
   };
 
   home.sessionVariables = {
@@ -496,6 +503,7 @@ let
           "/nix/var/nix/profiles/default/bin/nix-channel --update"
           "/nix/var/nix/profiles/default/bin/nix-store --gc"
       	  "/nix/var/nix/profiles/default/bin/nix-collect-garbage -d"
+      	  "/nix/var/nix/profiles/default/bin/nix-store --optimise"
         ];
       };
     };

@@ -1,0 +1,18 @@
+[[language]]
+name = "go"
+auto-format = true
+file-types = ["go"]
+language-servers = ["gopls"]
+formatter = ["goimports"]
+
+[language-server.gopls]
+command = "gopls"
+config = { "experimentalPostfixCompletions" = true,"usePlaceholders" = true,"completeUnimported" = true,"deepCompletion" = true,"importShortcut" = "both" }
+
+
+[[language]]
+name = "python"
+language-servers = ["pylsp"]
+formatter = { command = "black", args = ["-"] }
+auto-format = true
+

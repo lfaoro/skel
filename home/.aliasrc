@@ -8,7 +8,7 @@ alias bathelp='bat --plain --language=help'
 alias tb="nc termbin.com 9999 | xclip -sel c"
 
 alias upgrade="sudo apt update && sudo apt upgrade -y && nix-channel --update && hm switch"
-alias clean="sudo apt autoremove && nix-store --gc && nix-collect-garbage -d"
+alias clean="nix-store --gc && nix-collect-garbage -d && nix-store --optimise && sudo apt autoremove"
 alias cleanOldKernels="dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' |awk '{ print $2 }' |grep -v "$(uname -r)" |xargs sudo apt purge --yes"
 
 alias ssh='TERM=xterm-256color ssh'
