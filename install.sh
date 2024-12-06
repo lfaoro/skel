@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 set -ex
 
-# git clone https://github.com/lfaoro/skel.git
+# git clone https://github.com/lfaoro/skel
 # git clone git@github.com:lfaoro/skel.git
-# git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 sudo apt update && \
-sudo apt install -y curl git zsh make gcc gnome-sushi linux-headers-generic dkms
-snap install mpv ffmpeg vlc
+sudo apt install -y curl git zsh make gcc linux-headers-generic dkms
+if pgrep -f "gnome|mate|cinnamon|unity|kde|lxde|xfce|Xorg|wayland|gdm|lightdm|sddm|xdm" > /dev/null; then
+  sudo apt install gnome-sushi
+  snap install mpv ffmpeg vlc
+fi
 sudo chown -R "$USER": .
 
 mkdir -p "$HOME/.sec"
