@@ -387,6 +387,7 @@ let
       ga = "git add";
       gd = "git diff --unified=5 --diff-filter=M";
       gp = "git push";
+      gpu = "git pull";
       gl = "git log --stat";
       gcp = "git add . && git commit -m 'update' && git push";
 
