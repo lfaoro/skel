@@ -35,6 +35,11 @@ if [[ ! -e $(which nix) ]]; then
   echo "experimental-features = nix-command flakes" |sudo tee -a /etc/nix/nix.conf
 fi
 
+# backup config.nix if exists
+if [[ -e "./config.nix" ]]; then
+  mv ./config.nix ./config.nix.bak
+fi
+
 # create config.nix
 echo "
 {
@@ -45,7 +50,6 @@ echo "
 	useGUI = false;
 	swapAltWin = false;
 }"> ./config.nix
-
 
 # install home-manager
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
@@ -65,14 +69,6 @@ if [[ $(nix-channel --list|grep home) -eq 1 ]]; then
 
   nix-env -iA nixgl.auto.nixGLDefault
 fi 
-
-# backup config.nix if exists
-if [[ -e "./config.nix" ]]; then
-  mv ./config.nix ./config.nix.bak
-fi
-
-# home-manager switch -b bak
-systemctl --user start cronjobs.service
 
 # update-alternatives --config editor
 # sudo ln -fs "$(which hx)" /etc/alternatives/editor

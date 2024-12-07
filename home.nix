@@ -529,4 +529,24 @@ let
       };
     };
   };
+
+  # Define mosh as a user service
+  systemd.user.services.mosh = {
+    Unit = {
+      Description = "Mosh server service";
+    };
+
+    Service = {
+      ExecStart = "${pkgs.mosh}/bin/mosh-server";
+      Type = "simple";
+      Restart = "on-failure";
+      RestartSec = "10s";
+    };
+
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
+
+  systemd.user.startServices = true; # This enables all systemd.user.services to start
 }
