@@ -69,7 +69,7 @@ ln -sf ~/skel/home.nix ~/.config/home-manager/home.nix
 
 if $xchan --list |grep -q home-manager; then 
   $xchan --update
-  mv -f ~/.bashrc ~/.bashrc.bak
+  mv -f ~/.bashrc ~/.bashrc.bak ||:
   $xshell '<home-manager>' -A install
   if [ "$1" = "true" ]; then
     $xenv -iA nixgl.auto.nixGLDefault
