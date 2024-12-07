@@ -22,7 +22,6 @@ let
     helix
     go
     gopls
-    sqlc
     gitui
     mercurial
     gh # github CLI
@@ -30,7 +29,41 @@ let
     # python 
     python312Packages.python-lsp-server
     black
-  ] else [];
+    # Protocl bufers
+    protobuf
+    buf
+    protoc-gen-go
+    protoc-gen-go-grpc
+    protoc-gen-grpc-web
+    protoc-gen-doc
+    grpc-gateway
+    grpcurl
+
+    sqlc
+    sqlite sqlint
+    # nixfmt
+    # solc
+
+
+    # clouds
+    # cloudflared
+
+    # Language servers
+    vscode-langservers-extracted # html/js
+    # nil # nix lsp
+    # marksman
+    ## IaC
+    # pulumi
+    # terraform-ls
+
+    # nodePackages_latest.yaml-language-server
+    # jsonnet-language-server
+    # haskellPackages.language-protobuf
+    # nodePackages_latest.bash-language-server
+    # buf-language-server
+    # vscode-langservers-extracted
+    # nodePackages_latest.typescript-language-server
+    # nodePackages.vue-language-server
   guiPackages = if configOpt.useGUI then with pkgs; [
     # GUI
     # alacritty
@@ -141,7 +174,7 @@ let
     mosh rlwrap
     whois
 
-    # rice
+    # ricing
     nordic
     # nordzy-icon-theme
     nordzy-cursor-theme
@@ -151,45 +184,12 @@ let
     speedtest-cli
     magic-wormhole-rs
     yt-dlp
+
+    # crypto
     monero-cli
 
     # fonts
     fira-code fira-code-symbols
-
-    # Protocl bufers
-    protobuf
-    buf
-    protoc-gen-go
-    protoc-gen-go-grpc
-    protoc-gen-grpc-web
-    protoc-gen-doc
-    grpc-gateway
-    grpcurl
-
-    # develop
-    sqlite sqlint
-    # nixfmt
-    # solc
-
-    # IaC
-    # pulumi
-
-    # clouds
-    # cloudflared
-
-    # Language servers
-    vscode-langservers-extracted # html/js
-    # nil # nix lsp
-    # marksman
-    # terraform-ls
-    # nodePackages_latest.yaml-language-server
-    # jsonnet-language-server
-    # haskellPackages.language-protobuf
-    # nodePackages_latest.bash-language-server
-    # buf-language-server
-    # vscode-langservers-extracted
-    # nodePackages_latest.typescript-language-server
-    # nodePackages.vue-language-server
   ];
 
   home.file = {
