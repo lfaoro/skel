@@ -71,5 +71,7 @@ if [[ $(nix-channel --list|grep home) -eq 1 ]]; then
   nix-env -iA nixgl.auto.nixGLDefault
 fi 
 
+chsh -s /bin/zsh
+
 # update-alternatives --config editor
 # sudo ln -fs "$(which hx)" /etc/alternatives/editor
