@@ -18,8 +18,8 @@ let
   configOpt = import ./config.nix;
   # dconf dump >file && dconf2nix file
   dconfModule = if configOpt.useDconf then [./dconf.nix] else [];
+
   devTools = if configOpt.useDevTools then with pkgs; [
-    helix
     go
     gopls
     gitui
@@ -117,6 +117,7 @@ let
     nix-info
     nix-tree
     nix-du
+
     zsh-completions
     dconf2nix
     dconf
@@ -126,6 +127,7 @@ let
     coreutils
     unzip
     gnupg age
+    helix # editor
 
     bc
     crunch
@@ -178,8 +180,8 @@ let
 
     # ricing
     nordic
-    # nordzy-icon-theme
-    nordzy-cursor-theme
+    nordzy-icon-theme
+    # nordzy-cursor-theme
     neofetch
 
     # fast-cli

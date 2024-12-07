@@ -7,11 +7,11 @@ set -ex
 git submodule update --init --recursive
 
 sudo apt update && \
-sudo apt install -y curl git zsh make gcc dkms
+sudo apt install -y curl git zsh make gcc 
 
 # if we're running a guy
 if [ "$1" = "true" ]; then
-  sudo apt install gnome-sushi
+  sudo apt install gnome-sushi dkms
   snap install mpv ffmpeg vlc
   # enforce browser policy
   sudo mkdir -p /etc/brave/policies/managed
