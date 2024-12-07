@@ -49,11 +49,26 @@ sr() {
     rg -l "$search" --type go |xargs sed -i "'s/$search/$replace/g'"
 }
 
+# check_power || exit 0
+check_power()
+{
+    # laptop check, on_ac_power returns:
+    #       0 (true)    System is on main power
+    #       1 (false)   System is not on main power
+    #       255 (false) Power status could not be determined
+    # Desktop systems always return 255 it seems
+    if command -v on_ac_power >/dev/null; then
+        if on_ac_power; then
+            :
+        elif [ $? -eq 1 ]; then
+            return 1
+        fi
+    fi
+    return 0
+}
+
+
 # Start ssh-agent if it's not already running
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent -s > "$XDG_RUNTIME_DIR/ssh-agent.env"
-fi
-
-if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
-    source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
 fi
