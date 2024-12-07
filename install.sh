@@ -28,7 +28,7 @@ curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/ala
 # set locale
 sudo localectl set-locale LANG=en_US.UTF-8
 
-if [[ ! -e $(which nix) ]]; then
+if [[ ! -d '/nix' ]]; then
   # install nix package manager
   sh <(curl -L https://nixos.org/nix/install) --daemon
   # add the experimental config to nix.conf so we can use flakes and search
