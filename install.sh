@@ -54,21 +54,23 @@ fi
 
 # install home-manager
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
-# install nixGL to enable hardware acceleration for nix-GUI tmpDirpps
-nix-channel --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl
 # unstable
 nix-channel --add https://channels.nixos.org/nixpkgs-unstable nixpkgs 
+if [ "$1" = "true" ]; then
+  # install nixGL to enable hardware acceleration for nix-GUI tmpDirpps
+  nix-channel --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl
+fi
 
 mkdir -p ~/.config/home-manager
 ln -sf ~/skel/home.nix ~/.config/home-manager/home.nix
 
-if [[ $(nix-channel --list|grep home) -eq 1 ]]; then 
+if nix-channel --list |grep -q home-manager; then 
   nix-channel --update
-
-  rm -f ~/.bashrc
+  mv -f ~/.bashrc ~/.bashrc.bak
   nix-shell '<home-manager>' -A install
-
-  nix-env -iA nixgl.auto.nixGLDefault
+  if [ "$1" = "true" ]; then
+    nix-env -iA nixgl.auto.nixGLDefault
+  fi
 fi 
 
 chsh -s /bin/zsh
