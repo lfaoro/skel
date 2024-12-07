@@ -180,7 +180,7 @@ let
 
     # ricing
     nordic
-    nordzy-icon-theme
+    # nordzy-icon-theme
     # nordzy-cursor-theme
     neofetch
 
@@ -383,9 +383,12 @@ let
       PROMPT="%(?.%F{green}√.%F{red}?)%f %n %B%F{240}%2~%f%b > ";
     '';
 
+    initExtra = ''
+      source "$HOME/skel/home/dotup.zsh" || :
+    '';
+
 
    shellAliases = {
-      ".." = "cd ..";
       gs = "git status";
       gc = "git commit -m";
       ga = "git add";
