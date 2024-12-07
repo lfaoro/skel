@@ -35,21 +35,22 @@ if [[ ! -e $(which nix) ]]; then
   echo "experimental-features = nix-command flakes" |sudo tee -a /etc/nix/nix.conf
 fi
 
-# backup config.nix if exists
-if [[ -e "./config.nix" ]]; then
-  mv ./config.nix ./config.nix.bak
-fi
+# start a new shell
+exec "$SHELL" || exec /bin/sh
 
-# create config.nix
-echo "
-{
-  username = \"$USER\";
-  homedir = \"$HOME\";
-	useDevTools = false;
-	useDconf = false;
-	useGUI = false;
-	swapAltWin = false;
-}"> ./config.nix
+# backup config.nix if exists
+if [[ ! -e "./config.nix" ]]; then
+  # create config.nix
+  echo "
+  {
+    username = \"$USER\";
+    homedir = \"$HOME\";
+  	useDevTools = false;
+  	useDconf = false;
+  	useGUI = false;
+  	swapAltWin = false;
+  }"> ./config.nix
+fi
 
 # install home-manager
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
