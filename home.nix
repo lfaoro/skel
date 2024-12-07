@@ -64,6 +64,8 @@ let
     # vscode-langservers-extracted
     # nodePackages_latest.typescript-language-server
     # nodePackages.vue-language-server
+   ] else [];
+
   guiPackages = if configOpt.useGUI then with pkgs; [
     # GUI
     # alacritty
