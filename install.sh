@@ -7,18 +7,18 @@ set -ex
 git submodule update --init --recursive
 
 sudo apt update && \
-sudo apt install -y curl git zsh make gcc linux-headers-generic dkms
-if pgrep -f "gnome|mate|cinnamon|unity|kde|lxde|xfce|Xorg|wayland|gdm|lightdm|sddm|xdm" > /dev/null; then
+sudo apt install -y curl git zsh make gcc dkms
+
+# if we're running a guy
+if [ "$1" = "true" ]; then
   sudo apt install gnome-sushi
   snap install mpv ffmpeg vlc
-
   # enforce browser policy
   sudo mkdir -p /etc/brave/policies/managed
   sudo cp ./etc/chromium-policy.json /etc/brave/policies/managed/policy.json
 fi
 
 sudo chown -R "$USER": .
-
 mkdir -p "$HOME/.sec"
 touch "$HOME/.sec/keys"
 
