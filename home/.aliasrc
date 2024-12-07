@@ -12,6 +12,8 @@ alias clean="nix-store --gc && nix-collect-garbage -d && nix-store --optimise &&
 alias cleanOldKernels="dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' |awk '{ print $2 }' |grep -v "$(uname -r)" |xargs sudo apt purge --yes"
 
 alias ssh='TERM=xterm-256color ssh'
+alias edkeygen='ssh-keygen -t ed25519 -a 100 -C'
+
 hssh()
 {
     local ttyp
