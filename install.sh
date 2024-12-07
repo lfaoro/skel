@@ -35,9 +35,6 @@ if [[ ! -e $(which nix) ]]; then
   echo "experimental-features = nix-command flakes" |sudo tee -a /etc/nix/nix.conf
 fi
 
-# start a new shell
-exec "$SHELL" || exec /bin/sh
-
 # backup config.nix if exists
 if [[ ! -e "./config.nix" ]]; then
   # create config.nix
@@ -52,24 +49,30 @@ if [[ ! -e "./config.nix" ]]; then
   }"> ./config.nix
 fi
 
+
+xchan='/nix/var/nix/profiles/default/bin/nix-channel'
+xenv='/nix/var/nix/profiles/default/bin/nix-env'
+xshell='/nix/var/nix/profiles/default/bin/nix-shell'
+
+
 # install home-manager
-nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+$xchan --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
 # unstable
-nix-channel --add https://channels.nixos.org/nixpkgs-unstable nixpkgs 
+$xchan --add https://channels.nixos.org/nixpkgs-unstable nixpkgs 
 if [ "$1" = "true" ]; then
   # install nixGL to enable hardware acceleration for nix-GUI tmpDirpps
-  nix-channel --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl
+  $xchan --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl
 fi
 
 mkdir -p ~/.config/home-manager
 ln -sf ~/skel/home.nix ~/.config/home-manager/home.nix
 
-if nix-channel --list |grep -q home-manager; then 
-  nix-channel --update
+if $xchan --list |grep -q home-manager; then 
+  $xchan --update
   mv -f ~/.bashrc ~/.bashrc.bak
-  nix-shell '<home-manager>' -A install
+  $xshell '<home-manager>' -A install
   if [ "$1" = "true" ]; then
-    nix-env -iA nixgl.auto.nixGLDefault
+    $xenv -iA nixgl.auto.nixGLDefault
   fi
 fi 
 
