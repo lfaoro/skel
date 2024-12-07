@@ -397,6 +397,7 @@ let
       gpu = "git pull";
       gl = "git log --stat";
       gcp = "git add . && git commit -m 'update' && git push";
+      gacp = "git add . && git commit -m 'update' && git push";
 
       ls = "exa";
       l = "exa -as modified --group-directories-first";
