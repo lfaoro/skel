@@ -19,6 +19,30 @@ secure_perms(){
     find "$1" -type f -exec chmod 600 {} \;
 }
 
+clear_clipboard="xsel -cb"
+
+gpg_sendkey() {
+    gpg --keyserver certserver.pgp.com --send-keys "$1"
+    gpg --keyserver keyserver.ubuntu.com --send-keys "$1"
+    gpg --keyserver keys.openpgp.org --send-keys "$1"
+    gpg --keyserver pgp.mit.edu --send-keys "$1"
+}
+
+gpg_getkey(){
+    gpg --keyserver certserver.pgp.com --recv-key "$1"
+    gpg --keyserver keyserver.ubuntu.com --recv-key "$1"
+    gpg --keyserver keys.openpgp.org --recv-key "$1"
+    gpg --keyserver pgp.mit.edu --recv-key "$1"
+}
+
+gpg_enc(){
+    gpg -a -se -r "$1"
+}
+
+gpg_dec(){
+    gpg -d
+}
+
 hssh()
 {
     local ttyp
