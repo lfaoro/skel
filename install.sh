@@ -30,7 +30,7 @@ sudo localectl set-locale LANG=en_US.UTF-8
 
 if [[ ! -d '/nix' ]]; then
   # install nix package manager
-  sh <(curl -L https://nixos.org/nix/install) --daemon
+  sh <(curl -L https://nixos.org/nix/install) --no-daemon
   # add the experimental config to nix.conf so we can use flakes and search
   echo "experimental-features = nix-command flakes" |sudo tee -a /etc/nix/nix.conf
 fi

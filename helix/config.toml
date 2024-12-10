@@ -100,7 +100,7 @@ C-s = [":write", "normal_mode"]
 C-g = ["exit_select_mode"]
 
 [keys.normal.C-x]
-C-s = [":w", ":config-reload"]
+C-s = [":w"]
 C-f = [":open ."]
 C-c = [":buffer-close-others", "wonly"]
 C-r = ["rename_symbol"]
