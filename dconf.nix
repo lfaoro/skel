@@ -72,7 +72,7 @@ in {
       color-scheme = "prefer-dark";
       font-hinting = "slight";
       gtk-key-theme = "Emacs";
-      gtk-theme = "Nordic";
+      # gtk-theme = "Nordic";
       # icon-theme = "Nordzy";
       show-battery-percentage = true;
     };

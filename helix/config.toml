@@ -1,5 +1,5 @@
-theme = "gruvbox_dark_hard"
-# theme = "nord"
+theme = "nord-night"
+# theme = "base16_default"
 
 [editor]
 scrolloff = 0
@@ -24,7 +24,7 @@ insert = "bar"
 normal = "block"
 select = "underline"
 [editor.whitespace.render]
-tab = "all"
+tab = "none"
 space = "none"
 [editor.file-picker]
 hidden = false

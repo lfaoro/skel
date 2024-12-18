@@ -77,11 +77,12 @@ let
     sqlitebrowser
     gimp imagemagick
 
-    telegram-desktop element-desktop hexchat 
+    telegram-desktop element-desktop hexchat simplex-chat-desktop
     dino kaidan # xmpp clients
 
     # ffmpeg mpv vlc 
     dconf-editor # gsettings editor
+    copyq
     # conky # temp monitor
     # timeshift
     # chromium librewolf firefos.terraformx
@@ -123,10 +124,11 @@ let
     gnupg age
     helix # editor
 
-    bc
-    crunch
-
-    profanity
+    # calculators
+    kalker bc crunch
+    lnav # logs
+    profanity # irc
+    elvish # shell
 
     # ranger nnn
     # parallel
@@ -143,7 +145,6 @@ let
     loc # lines of code
     httpie # curl
     sd # sed
-    kalker # calc
     ticker # stocks
     fim # framebuffer image viewer
     
@@ -154,7 +155,8 @@ let
 
     # disks
     ncdu
-    udisks
+    broot
+    # udisks
 
     # network
     ipcalc
@@ -173,7 +175,7 @@ let
     whois
 
     # ricing
-    nordic
+    # nordic
     # nordzy-icon-theme
     # nordzy-cursor-theme
     neofetch

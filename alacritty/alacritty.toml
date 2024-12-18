@@ -1,6 +1,6 @@
 [general]
 import = [
-    "~/.config/alacritty/themes/themes/gruvbox.toml"
+    "~/.config/alacritty/themes/themes/base16_default_dark.toml"
 ]
 
 [cursor]
@@ -66,7 +66,7 @@ program = "/usr/bin/zsh"
 
 [window]
 # Setting decorations to 'none' removes all window borders and title bar.
-decorations = "none"
+decorations = "none" # full
 dynamic_padding = false
 opacity = 1
 startup_mode = "Maximized"
