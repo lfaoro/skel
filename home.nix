@@ -77,7 +77,7 @@ let
     sqlitebrowser
     gimp imagemagick
 
-    telegram-desktop element-desktop hexchat simplex-chat-desktop
+    telegram-desktop element-desktop hexchat 
     dino kaidan # xmpp clients
 
     # ffmpeg mpv vlc 

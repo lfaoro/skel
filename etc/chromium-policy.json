@@ -1,6 +1,6 @@
 {
   "BraveRewardsDisabled": true,
-  "SyncDisabled": true,
+  "SyncDisabled": false,
   "MetricsReportingEnabled": false,
   "SearchSuggestEnabled": false,
   "BrowserSignin": 0,
