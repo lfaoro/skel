@@ -25,57 +25,50 @@ let
     gitui
     mercurial
     gh # github CLI
-    taplo
-    # python 
-    python312Packages.python-lsp-server
-    black
-    # Protocl bufers
-    protobuf
-    buf
-    protoc-gen-go
-    protoc-gen-go-grpc
-    protoc-gen-grpc-web
-    protoc-gen-doc
-    grpc-gateway
-    grpcurl
+
+    taplo # toml fmt
+    black # python fmt
+    # solc # solidity fmt
 
     sqlc
     sqlite sqlint
     # nixfmt
-    # solc
 
-
-    # clouds
+    # cloud
     # cloudflared
+    # gcloud
+    # aws
 
     # Language servers
-    vscode-langservers-extracted # html/js
+    python312Packages.python-lsp-server
+    vscode-langservers-extracted # html/js/css
     # nil # nix lsp
-    # marksman
-    ## IaC
-    # pulumi
+    # marksman # Markdown lsp
     # terraform-ls
-
     # nodePackages_latest.yaml-language-server
     # jsonnet-language-server
     # haskellPackages.language-protobuf
     # nodePackages_latest.bash-language-server
     # buf-language-server
-    # vscode-langservers-extracted
-    # nodePackages_latest.typescript-language-server
     # nodePackages.vue-language-server
+
+    ## IaC
+    # pulumi
+    # terraform
+    # ansible
+
    ] else [];
 
   guiPackages = if configOpt.useGUI then with pkgs; [
     # GUI
     # alacritty
     keepassxc
-    monero-gui
     dbeaver-bin
-    transmission_3-gtk
     tor-browser
     sqlitebrowser
     gimp imagemagick
+
+    # monero-gui
 
     telegram-desktop element-desktop hexchat 
     dino kaidan # xmpp clients
@@ -83,11 +76,8 @@ let
     # ffmpeg mpv vlc 
     dconf-editor # gsettings editor
     copyq
-    # conky # temp monitor
     # timeshift
     # chromium librewolf firefos.terraformx
-    # vlc
-    # security
    ] else [];
 
  in
@@ -186,7 +176,7 @@ let
     yt-dlp
 
     # crypto
-    monero-cli
+    # monero-cli
 
     # fonts
     fira-code fira-code-symbols
