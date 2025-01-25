@@ -29,3 +29,6 @@ go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
 # telemetry
 go install golang.org/x/telemetry/cmd/gotelemetry@latest
 gotelemetry off
+
+# database
+go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest

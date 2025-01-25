@@ -16,3 +16,6 @@ language-servers = ["pylsp"]
 formatter = { command = "black", args = ["-"] }
 auto-format = true
 
+[[language]]
+name = "rust"
+formatter = { command = "rustfmt" }

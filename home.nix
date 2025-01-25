@@ -2,7 +2,6 @@
 # https://nix-community.github.io/home-manager/options.html
 { lib, config, pkgs, ... }:
 
-# Importing pkgs attribute set
 let 
    nixGL = import <nixgl> { };
   nixGLWrap = pkg: 
@@ -14,44 +13,47 @@ let
         ''
       )) (builtins.attrNames (builtins.readDir "${pkg}/bin")));
     };
-  # Load configuration from config.nix
   configOpt = import ./config.nix;
+
   # dconf dump >file && dconf2nix file
   dconfModule = if configOpt.useDconf then [./dconf.nix] else [];
 
   devTools = if configOpt.useDevTools then with pkgs; [
     go
-    gopls
     gitui
     mercurial
     gh # github CLI
 
+    rustc
+    cargo
+    rust-analyzer
+    rustfmt
+
+    sqlite sqlint
+
+    # formatters
     taplo # toml fmt
     black # python fmt
-    # solc # solidity fmt
+    nixfmt-rfc-style 
 
-    sqlc
-    sqlite sqlint
-    # nixfmt
-
-    # cloud
-    # cloudflared
-    # gcloud
-    # aws
-
-    # Language servers
+    # language servers
+    nil
     python312Packages.python-lsp-server
     vscode-langservers-extracted # html/js/css
-    # nil # nix lsp
-    # marksman # Markdown lsp
+    marksman # Markdown lsp
+    # solc # solidity 
     # terraform-ls
     # nodePackages_latest.yaml-language-server
     # jsonnet-language-server
     # haskellPackages.language-protobuf
     # nodePackages_latest.bash-language-server
-    # buf-language-server
     # nodePackages.vue-language-server
 
+    # cloud
+    # cloudflared
+    # gcloud
+    # aws
+     
     ## IaC
     # pulumi
     # terraform
@@ -78,13 +80,13 @@ let
     copyq
     # timeshift
     # chromium librewolf firefos.terraformx
+    simplescreenrecorder
    ] else [];
 
  in
 {
   imports = dconfModule;
 
-  # https://github.com/yrashk/nix-home/blob/master/home.nix
   home.username = configOpt.username;
   home.homeDirectory = configOpt.homedir;
   home.stateVersion = "24.11";
@@ -95,6 +97,7 @@ let
   xdg.enable=true;
   xdg.mime.enable=true;
   fonts.fontconfig.enable = true;
+  # optimizations for non-NixOS distros
   targets.genericLinux.enable = true;
 
   home.packages = with pkgs; guiPackages ++ devTools ++ [
@@ -241,30 +244,28 @@ let
     enable = true;
     userName = "user";
     userEmail = "user@example.com";
+    signing = {
+      key = "me@leonardofaoro.com";
+      signByDefault = false;
+    };
 
-     # Common Git configurations
     extraConfig = {
       # Core settings
       core.editor = "hx";  # Set your preferred editor (e.g., vim, nvim, nano)
       core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";  # Global .gitignore file
 
-      # Alias settings
       alias.co = "checkout";
       alias.br = "branch";
       alias.ci = "commit";
       alias.st = "status";
       alias.lg = "log --oneline --graph --decorate --all";
 
-      # Color settings
       color.ui = "auto";
 
-      # Pull settings
       pull.rebase = "false";  # Merge (the default strategy)
       
-      # Credential settings
       credential.helper = "cache --timeout=3600";  # Cache credentials for an hour
       
-      # Push settings
       push.default = "simple";  # Push the current branch to the corresponding upstream branch
     };
   };
@@ -478,6 +479,7 @@ let
     userSettings = {
     };
     extensions = [
+      pkgs.vscode-extensions.github.copilot
       pkgs.vscode-extensions.tuttieee.emacs-mcx
       pkgs.vscode-extensions.golang.go
       pkgs.vscode-extensions.redhat.vscode-yaml
