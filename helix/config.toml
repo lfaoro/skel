@@ -1,4 +1,5 @@
-theme = "nord-night"
+theme = "iroaseta"
+# theme = "nord-night"
 # theme = "base16_default"
 
 [editor]
@@ -51,6 +52,7 @@ f = ["find_till_char"]
 F = ["till_prev_char"]
 C-o = ["jump_backward"]
 C-i = ["jump_forward"]
+"-" = ["flip_selections"]
 
 # S-g = 
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]

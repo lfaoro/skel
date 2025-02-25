@@ -7,7 +7,23 @@ formatter = ["goimports"]
 
 [language-server.gopls]
 command = "gopls"
-config = { "experimentalPostfixCompletions" = true,"usePlaceholders" = true,"completeUnimported" = true,"deepCompletion" = true,"importShortcut" = "both" }
+[language-server.gopls.config]
+"experimentalPostfixCompletions" = true
+"usePlaceholders" = true
+"completeUnimported" = true
+"deepCompletion" = true
+"importShortcut" = "both"
+"gofumpt" = true
+"matcher" = "fuzzy"
+"completionBudget" = "500ms"
+"staticcheck" = true
+"diagnosticsDelay" = "250ms"
+"linkTarget" = "pkg.go.dev"
+"semanticTokens" = true
+[language-server.gopls.config.analyses]
+"nilness" = true
+"unusedparams" = true
+"shadow" = true
 
 
 [[language]]

@@ -20,9 +20,7 @@ let
 
   devTools = if configOpt.useDevTools then with pkgs; [
     go
-    gitui
-    mercurial
-    gh # github CLI
+    protobuf
 
     rustc
     cargo
@@ -30,6 +28,10 @@ let
     rustfmt
 
     sqlite sqlint
+
+    # live reload
+    watchexec
+    inotify-tools
 
     # formatters
     taplo # toml fmt
@@ -48,6 +50,11 @@ let
     # haskellPackages.language-protobuf
     # nodePackages_latest.bash-language-server
     # nodePackages.vue-language-server
+
+    gitui lazygit
+    gh # github CLI
+
+    kubo # ipfs in Go
 
     # cloud
     # cloudflared
@@ -77,12 +84,11 @@ let
 
     # ffmpeg mpv vlc 
     dconf-editor # gsettings editor
-    copyq
+    # copyq
     # timeshift
     # chromium librewolf firefos.terraformx
     simplescreenrecorder
    ] else [];
-
  in
 {
   imports = dconfModule;
@@ -135,7 +141,7 @@ let
     delta meld # diff
     bat # cat
     eza # ls
-    loc # lines of code
+    tokei # lines of code
     httpie # curl
     sd # sed
     ticker # stocks
@@ -245,7 +251,7 @@ let
     userName = "user";
     userEmail = "user@example.com";
     signing = {
-      key = "me@leonardofaoro.com";
+      key = "E07A93374443E5CB";
       signByDefault = false;
     };
 
