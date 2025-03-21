@@ -189,6 +189,7 @@ let
 
     # fonts
     fira-code fira-code-symbols
+    hack-font
   ];
 
   home.file = {
@@ -234,6 +235,7 @@ let
   home.sessionPath = [
     "$HOME/skel/bin"
     "$HOME/go/bin"
+    "$HOME/.cargo/bin"
     "/usr/local/go/bin"
     "$HOME/.local/bin"
   ];

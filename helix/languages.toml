@@ -9,11 +9,11 @@ formatter = ["goimports"]
 command = "gopls"
 [language-server.gopls.config]
 "experimentalPostfixCompletions" = true
-"usePlaceholders" = true
+"usePlaceholders" = false
 "completeUnimported" = true
 "deepCompletion" = true
 "importShortcut" = "both"
-"gofumpt" = true
+"gofumpt" = false
 "matcher" = "fuzzy"
 "completionBudget" = "500ms"
 "staticcheck" = true
