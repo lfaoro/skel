@@ -1,18 +1,8 @@
 # nix-store --verify --check-contents --repair
 # https://nix-community.github.io/home-manager/options.html
-{ lib, config, pkgs, ... }:
+{ lib, config, pkgs, nixgl, ... }:
 
 let 
-   nixGL = import <nixgl> { };
-  nixGLWrap = pkg: 
-    pkgs.buildEnv {
-      name = "nixGL-${pkg.name}";
-      paths = [pkg] ++ (map (bin: pkgs.hiPrio (
-        pkgs.writeShellScriptBin bin ''
-          exec -a "$0" "${nixGL.auto.nixGLDefault}/bin/nixGL" "${pkg}/bin/${bin}" "$@"
-        ''
-      )) (builtins.attrNames (builtins.readDir "${pkg}/bin")));
-    };
   configOpt = import ./config.nix;
 
   # dconf dump >file && dconf2nix file
@@ -68,26 +58,34 @@ let
 
    ] else [];
 
-  guiPackages = if configOpt.useGUI then with pkgs; [
-    # GUI
+  guiPackages = if configOpt.useGUI then
+[
     # alacritty
-    keepassxc
-    dbeaver-bin
-    tor-browser
-    sqlitebrowser
-    gimp imagemagick
+    # nixGL.keepassxc
+    # nixgl.tor-browser
 
-    # monero-gui
+    # nixGL.dbeaver-bin
+    # nixGL.sqlitebrowser
 
-    telegram-desktop element-desktop hexchat 
-    dino kaidan # xmpp clients
+    # nixGL.gimp
+    # nixGL.imagemagick
+
+    # nixGL.monero-gui
+    # nixGL.telegram-desktop
+    # nixGL.element-desktop
+    # nixGL.hexchat
+    # xmpp clients 
+    # nixGL.dino
+    # nixGL.kaidan 
 
     # ffmpeg mpv vlc 
-    dconf-editor # gsettings editor
+     
+    # gsettings editor
+    # nixGL.dconf-editor
     # copyq
     # timeshift
     # chromium librewolf firefos.terraformx
-    simplescreenrecorder
+    # nixGL.simplescreenrecorder
    ] else [];
  in
 {
@@ -259,7 +257,7 @@ let
 
     extraConfig = {
       # Core settings
-      core.editor = "hx";  # Set your preferred editor (e.g., vim, nvim, nano)
+      core.editor = "hx";
       core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";  # Global .gitignore file
 
       alias.co = "checkout";
@@ -269,11 +267,8 @@ let
       alias.lg = "log --oneline --graph --decorate --all";
 
       color.ui = "auto";
-
       pull.rebase = "false";  # Merge (the default strategy)
-      
       credential.helper = "cache --timeout=3600";  # Cache credentials for an hour
-      
       push.default = "simple";  # Push the current branch to the corresponding upstream branch
     };
   };
@@ -359,7 +354,7 @@ let
     '';
 
     initExtraFirst = ''
-      source /etc/zshrc || true
+      # source /etc/zshrc || true
       source "$HOME/.aliasrc" || :
       source "$HOME/.sec/keys" || :
 
@@ -384,6 +379,8 @@ let
 
 
    shellAliases = {
+      sudo = "sudo -i";
+      
       gs = "git status";
       gc = "git commit -m";
       ga = "git add";
@@ -447,10 +444,10 @@ let
       "nkbihfbeogaeaoehlefnkodbefgpgknn" # metamask
     ];
     commandLineArgs = [
+      "--disable-brave-rewards"
       "--disable-features=WebRtcAllowInputVolumeAdjustment"
       "--disable-reading-from-canvas"
       "--ash-force-desktop"
-      # "--disable-3d-apis"
       "--disable-background-mode"
       "--disable-plugins-discovery"
       "--disable-preconnect"
@@ -468,11 +465,9 @@ let
       "--reset-variation-state"
       "--ssl-version-min"
       "--start-maximized"
-      # "--disable-webgl"
       "--ignore-gpu-blocklist"
       "--enable-gpu-rasterization"
       "--enable-zero-copy"
-      # "--disable-features=UseSkiaRenderer"
       "--enable-parallel-downloading"
       "--enable-quic"
       "--enable-lazy-image-loading"
@@ -484,9 +479,9 @@ let
   programs.vscode = {
     enable = configOpt.useGUI ;
     package = pkgs.vscodium;
-    userSettings = {
+    profiles.default.userSettings = {
     };
-    extensions = [
+    profiles.default.extensions = [
       pkgs.vscode-extensions.github.copilot
       pkgs.vscode-extensions.tuttieee.emacs-mcx
       pkgs.vscode-extensions.golang.go
@@ -508,10 +503,10 @@ let
         Type = "oneshot";
         ExecStart = [ 
           "/usr/bin/journalctl --vacuum-time=7d" 
-          "/nix/var/nix/profiles/default/bin/nix-channel --update"
-          "/nix/var/nix/profiles/default/bin/nix-store --gc"
-      	  "/nix/var/nix/profiles/default/bin/nix-collect-garbage -d"
-      	  "/nix/var/nix/profiles/default/bin/nix-store --optimise"
+          "nix-channel --update"
+          "nix-store --gc"
+      	  "nix-collect-garbage -d"
+      	  "nix-store --optimise"
         ];
       };
     };

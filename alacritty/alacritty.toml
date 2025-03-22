@@ -9,14 +9,26 @@ unfocused_hollow = true
 blinking = "Never"
 shape = "Block"
 
+[window]
+# Setting decorations to 'none' removes all window borders and title bar.
+decorations = "none"
+dynamic_padding = false
+opacity = 0.9
+startup_mode = "Maximized"
+option_as_alt = "OnlyLeft"
+[window.padding]
+x = 0
+y = 4
+
 [font]
 size = 14
-offset.x = 0
+offset.x = 1
 offset.y = 0
 [font.normal]
 family = "Hack"
 style = "SemiBold"
-# font.ligatures = true
+# not yet available, maybe someday...
+# ligatures = true
 
 # [[keyboard.bindings]]
 # key = "N"
@@ -60,7 +72,7 @@ key = "S"
 mods = "Control|Shift"
 
 [mouse]
-hide_when_typing = true
+# hide_when_typing = true
 bindings = [
   { mouse = "Left", mods = "None", action = "ExpandSelection" },
   { mouse = "Right", mods = "None", action = "Paste" },
@@ -73,13 +85,4 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 args = ["-l", "-c", "tmux attach || tmux"]
 program = "/usr/bin/zsh"
 
-[window]
-# Setting decorations to 'none' removes all window borders and title bar.
-decorations = "none"
-dynamic_padding = false
-opacity = 0.9
-startup_mode = "Maximized"
 
-[window.padding]
-x = 0
-y = 0

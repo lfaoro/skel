@@ -30,10 +30,25 @@ sudo localectl set-locale LANG=en_US.UTF-8
 
 if [[ ! -d '/nix' ]]; then
   # install nix package manager
-  sh <(curl -L https://nixos.org/nix/install) --no-daemon
+  sh <(if [[ ! -e "./config.nix" ]]; then
+  # create config.nix
+  echo "
+  {
+    username = \"$USER\";
+    homedir = \"$HOME\";
+        useDevTools = false;
+        useDconf = false;
+        useGUI = false;
+        swapAltWin = false;
+  }"> ./config.nix
+fi
+curl -L https://nixos.org/nix/install) --no-daemon
   # add the experimental config to nix.conf so we can use flakes and search
+  sudo mkdir -p /etc/nix
   echo "experimental-features = nix-command flakes" |sudo tee -a /etc/nix/nix.conf
 fi
+
+. /home/user/.nix-profile/etc/profile.d/nix.sh
 
 # backup config.nix if exists
 if [[ ! -e "./config.nix" ]]; then
@@ -50,10 +65,12 @@ if [[ ! -e "./config.nix" ]]; then
 fi
 
 
-xchan='/nix/var/nix/profiles/default/bin/nix-channel'
-xenv='/nix/var/nix/profiles/default/bin/nix-env'
-xshell='/nix/var/nix/profiles/default/bin/nix-shell'
-
+# xchan='/nix/var/nix/profiles/default/bin/nix-channel'
+# xenv='/nix/var/nix/profiles/default/bin/nix-env'
+# xshell='/nix/var/nix/profiles/default/bin/nix-shell'
+xchan='nix-channel'
+xenv='nix-env'
+xshell='nix-shell'
 
 # install home-manager
 $xchan --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
