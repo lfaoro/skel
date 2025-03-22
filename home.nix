@@ -1,10 +1,9 @@
 # nix-store --verify --check-contents --repair
 # https://nix-community.github.io/home-manager/options.html
-{ lib, config, pkgs, nixgl, ... }:
+{ lib, config, pkgs, ... }:
 
 let 
   configOpt = import ./config.nix;
-
   # dconf dump >file && dconf2nix file
   dconfModule = if configOpt.useDconf then [./dconf.nix] else [];
 
@@ -59,9 +58,12 @@ let
    ] else [];
 
   guiPackages = if configOpt.useGUI then
-[
+  with pkgs;
+  [
     # alacritty
-    # nixGL.keepassxc
+    keepassxc
+    monero-gui
+    telegram-desktop
     # nixgl.tor-browser
 
     # nixGL.dbeaver-bin
@@ -70,8 +72,6 @@ let
     # nixGL.gimp
     # nixGL.imagemagick
 
-    # nixGL.monero-gui
-    # nixGL.telegram-desktop
     # nixGL.element-desktop
     # nixGL.hexchat
     # xmpp clients 
@@ -109,10 +109,10 @@ let
     nix-info
     nix-tree
     nix-du
+    dconf
+    dconf2nix
 
     zsh-completions
-    dconf2nix
-    dconf
     tmux
     jump
     xclip xsel
