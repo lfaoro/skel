@@ -19,8 +19,8 @@ if [ "$1" = "true" ]; then
 fi
 
 sudo chown -R "$USER": .
-mkdir -p "$HOME/.sec"
-touch "$HOME/.sec/keys"
+# mkdir -p "$HOME/.sec"
+# touch "$HOME/.sec/keys"
 # install alacritty terminfo
 curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info | tic -x -
 # set locale
@@ -40,7 +40,8 @@ if [[ ! -e "./config.nix" ]]; then
 fi
 
 if [[ ! -d '/nix' ]]; then
-  curl -L https://nixos.org/nix/install --no-daemon
+sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
+sh <(curl -L https://nixos.org/nix/install) --no-daemon
   source /home/user/.nix-profile/etc/profile.d/nix.sh
 fi
 
@@ -53,23 +54,24 @@ fi
 # xenv='/nix/var/nix/profiles/default/bin/nix-env'
 xchan='nix-channel'
 xenv='nix-env'
-# install home-manager
-$xchan --add \
-https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+xshell='nix-shell'
 # add unstable channel
 $xchan --add https://channels.nixos.org/nixpkgs-unstable nixpkgs 
 
 mkdir -p ~/.config/home-manager
 ln -sf ~/skel/home.nix ~/.config/home-manager/home.nix
-if $xchan --list |grep -q home-manager; then 
-  mv -f ~/.bashrc ~/.bashrc.bak ||:
-  $xchan --update
-  $xenv -iA nixpkgs.home-manager
-fi 
+  # install home-manager
+$xchan --add \
+  https://github.com/nix-community/home-manager/archive/master.tar.gz \
+  home-manager ||:
+mv -f ~/.bashrc ~/.bashrc.bak ||:
+$xchan --update
+$xshell '<home-manager>' -A install
 
 if [ "$1" = "true" ]; then
 # install nixGL to enable hardware acceleration for nix-GUI tmpDirpps
-$xchan --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl
+  $xchan --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl
+  $xchan --update
   $xenv -iA nixgl.auto.nixGLDefault
 fi
 

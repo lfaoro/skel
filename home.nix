@@ -1,93 +1,109 @@
 # nix-store --verify --check-contents --repair
 # https://nix-community.github.io/home-manager/options.html
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
-let 
+let
   configOpt = import ./config.nix;
   # dconf dump >file && dconf2nix file
-  dconfModule = if configOpt.useDconf then [./dconf.nix] else [];
+  dconfModule = if configOpt.useDconf then [ ./dconf.nix ] else [ ];
 
-  devTools = if configOpt.useDevTools then with pkgs; [
-    go
-    protobuf
+  devTools =
+    if configOpt.useDevTools then
+      with pkgs;
+      [
+        go
+        protobuf
 
-    rustc
-    cargo
-    rust-analyzer
-    rustfmt
+        rustc
+        cargo
+        rust-analyzer
+        rustfmt
 
-    sqlite sqlint
+        nodejs
 
-    # live reload
-    watchexec
-    inotify-tools
+        sqlite
+        sqlint
 
-    # formatters
-    taplo # toml fmt
-    black # python fmt
-    nixfmt-rfc-style 
+        # live reload
+        watchexec
+        inotify-tools
 
-    # language servers
-    nil
-    python312Packages.python-lsp-server
-    vscode-langservers-extracted # html/js/css
-    marksman # Markdown lsp
-    # solc # solidity 
-    # terraform-ls
-    # nodePackages_latest.yaml-language-server
-    # jsonnet-language-server
-    # haskellPackages.language-protobuf
-    # nodePackages_latest.bash-language-server
-    # nodePackages.vue-language-server
+        # formatters
+        taplo # toml fmt
+        black # python fmt
+        nixfmt-rfc-style
 
-    gitui lazygit
-    gh # github CLI
+        # language servers
+        nil
+        python312Packages.python-lsp-server
+        vscode-langservers-extracted # html/js/css
+        marksman # Markdown lsp
+        # solc # solidity
+        # terraform-ls
+        # nodePackages_latest.yaml-language-server
+        # jsonnet-language-server
+        # haskellPackages.language-protobuf
+        # nodePackages_latest.bash-language-server
+        # nodePackages.vue-language-server
 
-    kubo # ipfs in Go
+        gitui
+        lazygit
+        gh # github CLI
 
-    # cloud
-    # cloudflared
-    # gcloud
-    # aws
-     
-    ## IaC
-    # pulumi
-    # terraform
-    # ansible
+        kubo # ipfs in Go
 
-   ] else [];
+        # cloud
+        # cloudflared
+        # gcloud
+        # aws
+        flyctl
 
-  guiPackages = if configOpt.useGUI then
-  with pkgs;
-  [
-    # alacritty
-    keepassxc
-    monero-gui
-    telegram-desktop
-    # nixgl.tor-browser
+        ## IaC
+        # pulumi
+        # terraform
+        # ansible
 
-    # nixGL.dbeaver-bin
-    # nixGL.sqlitebrowser
+      ]
+    else
+      [ ];
 
-    # nixGL.gimp
-    # nixGL.imagemagick
+  guiPackages =
+    if configOpt.useGUI then
+      with pkgs;
+      [
+        # alacritty
+        dconf-editor
+        keepassxc
+        monero-gui
+        telegram-desktop
+        # nixgl.tor-browser
 
-    # nixGL.element-desktop
-    # nixGL.hexchat
-    # xmpp clients 
-    # nixGL.dino
-    # nixGL.kaidan 
+        # nixGL.dbeaver-bin
+        # nixGL.sqlitebrowser
 
-    # ffmpeg mpv vlc 
-     
-    # gsettings editor
-    # nixGL.dconf-editor
-    # copyq
-    # timeshift
-    # chromium librewolf firefos.terraformx
-    # nixGL.simplescreenrecorder
-   ] else [];
- in
+        # nixGL.gimp
+        # nixGL.imagemagick
+
+        # nixGL.element-desktop
+        # nixGL.hexchat
+        # xmpp clients
+        # nixGL.dino
+        # nixGL.kaidan
+
+        # gsettings editor
+        # copyq
+        # timeshift
+        # chromium librewolf firefos.terraformx
+        # nixGL.simplescreenrecorder
+      ]
+    else
+      [ ];
+in
 {
   imports = dconfModule;
 
@@ -98,109 +114,133 @@ let
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
 
-  xdg.enable=true;
-  xdg.mime.enable=true;
+  xdg.enable = true;
+  xdg.mime.enable = true;
   fonts.fontconfig.enable = true;
   # optimizations for non-NixOS distros
   targets.genericLinux.enable = true;
 
-  home.packages = with pkgs; guiPackages ++ devTools ++ [
-    # config
-    nix-info
-    nix-tree
-    nix-du
-    dconf
-    dconf2nix
+  home.packages =
+    with pkgs;
+    guiPackages
+    ++ devTools
+    ++ [
+      # config
+      nix-info
+      nix-tree
+      nix-du
+      dconf
+      dconf2nix
+      tldr
 
-    zsh-completions
-    tmux
-    jump
-    xclip xsel
-    coreutils
-    unzip
-    gnupg age
-    helix # editor
+      zsh-completions
+      tmux
+      jump
+      xclip
+      xsel
+      coreutils
+      unzip
+      gnupg
+      age
+      helix # editor
+      lynx
 
-    # calculators
-    kalker bc crunch
-    lnav # logs
-    profanity # irc
-    elvish # shell
+      # calculators
+      kalker
+      bc
+      crunch
+      lnav # logs
+      profanity # irc
+      elvish # shell
 
-    # ranger nnn
-    # parallel
-    # nerdfonts
+      # ranger nnn
+      # parallel
+      # nerdfonts
 
-    # new generation
-    dogdns # dig
-    ripgrep # grep
-    fd # find
-    duf # du
-    delta meld # diff
-    bat # cat
-    eza # ls
-    tokei # lines of code
-    httpie # curl
-    sd # sed
-    ticker # stocks
-    fim # framebuffer image viewer
-    
-    # monitoring
-    htop ftop btop
-    nethogs
-    tshark
+      # new generation
+      dogdns # dig
+      ripgrep # grep
+      fd # find
+      duf # du
+      delta
+      meld # diff
+      bat # cat
+      eza # ls
+      tokei # lines of code
+      httpie # curl
+      sd # sed
+      ticker # stocks
+      fim # framebuffer image viewer
 
-    # disks
-    ncdu
-    broot
-    # udisks
+      # monitoring
+      htop
+      ftop
+      btop
+      nethogs
+      tshark
 
-    # network
-    ipcalc
-    nmap
-    zmap
-    masscan
-    rustscan
-    # dbus-map
-    netcat
-    socat
-    websocat
-    iftop
-    lsof
-    wget curl jq
-    mosh rlwrap
-    whois
+      # disks
+      ncdu
+      broot
+      # udisks
 
-    # ricing
-    # nordic
-    # nordzy-icon-theme
-    # nordzy-cursor-theme
-    neofetch
+      # network
+      ipcalc
+      nmap
+      zmap
+      masscan
+      rustscan
+      # dbus-map
+      netcat
+      socat
+      websocat
+      iftop
+      lsof
+      wget
+      curl
+      jq
+      mosh
+      rlwrap
+      whois
 
-    # fast-cli
-    speedtest-cli
-    magic-wormhole-rs
-    yt-dlp
+      # ricing
+      # nordic
+      # nordzy-icon-theme
+      # nordzy-cursor-theme
+      neofetch
 
-    # crypto
-    # monero-cli
+      # fast-cli
+      speedtest-cli
+      magic-wormhole-rs
+      yt-dlp
 
-    # fonts
-    fira-code fira-code-symbols
-    hack-font
-  ];
+      # crypto
+      # monero-cli
+
+      # fonts
+      fira-code
+      fira-code-symbols
+      hack-font
+    ];
 
   home.file = {
-    ".config/alacritty".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/alacritty";
-    ".tmux.conf".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/tmux/.tmux.conf";
-    ".config/helix".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/helix";
+    ".config/alacritty".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/alacritty";
+    ".tmux.conf".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/tmux/.tmux.conf";
+    ".config/helix".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/helix";
 
-    ".config/htop".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/htop";
-    ".config/lynx/lynx.cfg".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/lynx/lynx.cfg";
-    ".config/lynx/lynx.lss".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/lynx/lynx.lss";
+    ".config/htop".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/htop";
+    ".config/lynx/lynx.cfg".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/lynx/lynx.cfg";
+    ".config/lynx/lynx.lss".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/lynx/lynx.lss";
 
-    ".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/home/.bashrc";
-    ".aliasrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/home/.aliasrc";
+    # ".bashrc".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/home/.bashrc";
+    ".aliasrc".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/skel/home/.aliasrc";
   };
 
   home.sessionVariables = {
@@ -209,14 +249,14 @@ let
     SUDO_EDITOR = "hx";
 
     PAGER = "bat -p";
-    BAT_THEME="Nord";
+    BAT_THEME = "Nord";
     # CASE_SENSITIVE="true";
 
     DOT = "$HOME/skel";
     NNN_PLUG = "f:finder;o:fzopen;p:mocq;d:diffs;t:nmount;v:imgview";
     WWW_HOME = "https://lite.duckduckgo.com/lite/?kae=d&kp=-2&kz=-1&kav=1&kaj=m&kau=-1&kaq=-1&kap=-1&kao=-1&kax=-1&kak=-1&kay=b&k1=-1&q=$1";
-    LYNX_CFG="$HOME/.config/lynx/lynx.cfg";
-    LYNX_LSS="$HOME/.config/lynx/lynx.lss";
+    LYNX_CFG = "$HOME/.config/lynx/lynx.cfg";
+    LYNX_LSS = "$HOME/.config/lynx/lynx.lss";
 
     LANG = "en_US.UTF-8";
     LC_ADDRESS = "en_US.UTF-8";
@@ -258,7 +298,7 @@ let
     extraConfig = {
       # Core settings
       core.editor = "hx";
-      core.excludesfile = "${config.home.homeDirectory}/.gitignore_global";  # Global .gitignore file
+      core.excludesfile = "${config.home.homeDirectory}/.gitignore_global"; # Global .gitignore file
 
       alias.co = "checkout";
       alias.br = "branch";
@@ -267,12 +307,12 @@ let
       alias.lg = "log --oneline --graph --decorate --all";
 
       color.ui = "auto";
-      pull.rebase = "false";  # Merge (the default strategy)
-      credential.helper = "cache --timeout=3600";  # Cache credentials for an hour
-      push.default = "simple";  # Push the current branch to the corresponding upstream branch
+      pull.rebase = "false"; # Merge (the default strategy)
+      credential.helper = "cache --timeout=3600"; # Cache credentials for an hour
+      push.default = "simple"; # Push the current branch to the corresponding upstream branch
     };
   };
-   # Global .gitignore file
+  # Global .gitignore file
   xdg.configFile."git/ignore".text = ''
     # Compiled source #
     ###################
@@ -345,7 +385,6 @@ let
       ignoreSpace = true;
       share = true;
     };
-    
 
     # home.sessionPath doesn't work atm, this is a workaround.
     # https://github.com/nix-community/home-manager/issues/2991
@@ -377,10 +416,9 @@ let
       source "$HOME/skel/home/dotup.zsh" || :
     '';
 
-
-   shellAliases = {
+    shellAliases = {
       sudo = "sudo -i";
-      
+
       gs = "git status";
       gc = "git commit -m";
       ga = "git add";
@@ -408,14 +446,14 @@ let
       c = "cd";
       mm = "mkdir";
 
-      clip="xclip -sel c";
-      k="kubectl";
-      hm="unset __HM_SESS_VARS_SOURCED ; home-manager";
-      ip="ip --color=auto";
-      "'?'"="duck";
+      clip = "xclip -sel c";
+      k = "kubectl";
+      hm = "unset __HM_SESS_VARS_SOURCED ; home-manager";
+      ip = "ip --color=auto";
+      "'?'" = "duck";
 
       # mpv="gnome-session-inhibit mpv";
-      tb="nc termbin.com 9999";
+      tb = "nc termbin.com 9999";
     };
   };
 
@@ -477,7 +515,7 @@ let
   };
 
   programs.vscode = {
-    enable = configOpt.useGUI ;
+    enable = configOpt.useGUI;
     package = pkgs.vscodium;
     profiles.default.userSettings = {
     };
@@ -492,8 +530,7 @@ let
     ];
   };
 
-
-#dpkg-query --show 'linux-modules-*' |cut -f1 |grep -v $(uname -r) |xargs apt remove"
+  #dpkg-query --show 'linux-modules-*' |cut -f1 |grep -v $(uname -r) |xargs apt remove"
   systemd.user.services = {
     cronjobs = {
       Unit = {
@@ -501,12 +538,12 @@ let
       };
       Service = {
         Type = "oneshot";
-        ExecStart = [ 
-          "/usr/bin/journalctl --vacuum-time=7d" 
+        ExecStart = [
+          "/usr/bin/journalctl --vacuum-time=7d"
           "nix-channel --update"
           "nix-store --gc"
-      	  "nix-collect-garbage -d"
-      	  "nix-store --optimise"
+          "nix-collect-garbage -d"
+          "nix-store --optimise"
         ];
       };
     };
@@ -549,4 +586,36 @@ let
   };
 
   systemd.user.startServices = true; # This enables all systemd.user.services to start
+
+  services.syncthing = {
+    enable = true;
+    overrideDevices = false;
+    overrideFolders = false;
+  };
+  services.syncthing.settings = {
+    gui = {
+      enabled = true;
+      address = "127.0.0.1:8384";
+      user = "admin";
+      password = ""; # Use a secure password
+    };
+    options = {
+      maxConcurrentDownloads = 20;
+      maxConcurrentUploads = 10;
+      urAccepted = -1;
+    };
+    log = {
+      level = "info";
+      file = "/var/log/syncthing.log";
+    };
+    # folders = {
+    #     "work-folder" = {
+    #       id = "work";  # Unique ID for the folder
+    #       path = "~/work";  # Correctly reference the home directory
+    #       type = "sendreceive";  # Folder type
+    #       # devices = [ "device-id-1", "device-id-2" ];  # List of devices to share with
+    #       # Additional options can be added here
+    #     };
+    #   };
+  };
 }

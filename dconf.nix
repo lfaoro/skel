@@ -5,7 +5,8 @@ with lib.hm.gvariant;
 
 let
   configOpt = import ./config.nix;
-in {
+in
+{
   dconf.settings = {
     "apps/update-manager" = {
       first-run = false;
@@ -42,7 +43,10 @@ in {
       source-units = "degree";
       target-currency = "DZD";
       target-units = "radian";
-      window-position = mkTuple [ 26 23 ];
+      window-position = mkTuple [
+        26
+        23
+      ];
       word-size = 64;
     };
 
@@ -62,8 +66,15 @@ in {
 
     "org/gnome/desktop/input-sources" = {
       per-window = false;
-      sources = [ (mkTuple [ "xkb" "us" ]) ];
-      xkb-options = [ "ctrl:nocaps" ] ++ (if configOpt.swapAltWin then [ "altwin:swap_alt_win" ] else []);
+      sources = [
+        (mkTuple [
+          "xkb"
+          "us"
+        ])
+      ];
+      xkb-options = [
+        "ctrl:nocaps"
+      ] ++ (if configOpt.swapAltWin then [ "altwin:swap_alt_win" ] else [ ]);
     };
 
     "org/gnome/desktop/interface" = {
@@ -107,7 +118,11 @@ in {
 
     "org/gnome/desktop/search-providers" = {
       disable-external = true;
-      sort-order = [ "org.gnome.Contacts.desktop" "org.gnome.Documents.desktop" "org.gnome.Nautilus.desktop" ];
+      sort-order = [
+        "org.gnome.Contacts.desktop"
+        "org.gnome.Documents.desktop"
+        "org.gnome.Nautilus.desktop"
+      ];
     };
 
     "org/gnome/desktop/session" = {
@@ -142,11 +157,11 @@ in {
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
-      dock-fixed=false;
-      dock-position="RIGHT";
-      extend-height=false;
-      show-mounts-network=false;
-      show-mounts-only-mounted=true;
+      dock-fixed = false;
+      dock-position = "RIGHT";
+      extend-height = false;
+      show-mounts-network = false;
+      show-mounts-only-mounted = true;
     };
 
     "org/gnome/system/location" = {
