@@ -1,0 +1,109 @@
+theme = "catppuccin_macchiato"
+# theme = "iroaseta"
+# theme = "nord-night"
+# theme = "base16_default"
+
+[editor]
+end-of-line-diagnostics="info"
+scrolloff = 0
+auto-completion = true
+idle-timeout = 0
+auto-format = true
+auto-info = true
+auto-pairs = true
+# rulers = [80, 120]
+bufferline = "always"
+cursorline = true
+cursorcolumn = false
+# gutters = []
+gutters = ["diff", "line-numbers", "diagnostics"]
+line-number = "absolute"
+mouse = true
+middle-click-paste = true
+true-color = true
+color-modes = true
+[editor.inline-diagnostics]
+cursor-line = "error"
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+[editor.whitespace.render]
+tab = "none"
+space = "none"
+[editor.file-picker]
+hidden = false
+git-ignore = false
+[editor.statusline]
+left = ["mode","spinner","file-name","file-modification-indicator","selections"]
+center = ["diagnostics","workspace-diagnostics"]
+right = ["version-control","position","total-line-numbers","file-encoding","file-line-ending","file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+[editor.lsp]
+auto-signature-help = true
+display-messages = true
+display-inlay-hints = true
+display-signature-help-docs = true
+[editor.soft-wrap]
+enable = true
+wrap-at-text-width = false
+
+[keys.normal.C-w]
+d = ["vsplit", "jump_view_up", "goto_definition"]
+[keys.normal]
+C-space = ["completion"]
+f = ["find_till_char"]
+F = ["till_prev_char"]
+C-o = ["jump_backward"]
+C-i = ["jump_forward"]
+"-" = ["flip_selections"]
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+C-l = ["delete_selection", "paste_after"]
+C-h = ["delete_selection", "move_char_left", "paste_before"]
+C-r = [":config-reload", ":reload"]
+C-a = ["increment"]
+C-A = ["decrement"]
+# A-x = [""]
+# "tab" = "goto_next_function" # Select and jump to the next function via Treesitter
+# "S-tab" = "goto_prev_function" # Select and jump to the previous function via Treesitter 
+# Use system clipboard
+Y = "yank_main_selection_to_clipboard"
+X = "extend_line_above"
+D = "delete_char_backward"
+C-ret = ["open_above", "normal_mode"] 
+ret = ["open_below", "normal_mode"] 
+[keys.normal.space]
+z = ":toggle gutters.line-numbers.min-width 48 0"
+x = ":toggle whitespace.render all none"
+[keys.normal."="]
+r = ":run-shell-command go run ."
+l = ":run-shell-command pwd;ls"
+m = ":run-shell-command make"
+b = ":run-shell-command go build -o app . && ./app"
+t = ":run-shell-command go test -v ."
+[keys.insert]
+C-g = ["normal_mode"]
+j = { j = "normal_mode" }
+C-space = ["completion"]
+# emacs navigation
+C-p = ["move_line_up"]
+C-n = ["move_line_down"]
+C-b = ["move_char_left"]
+C-f = ["move_char_right"]
+C-a = ["goto_line_start"]
+C-e = ["goto_line_end", "move_char_right"]
+[keys.insert.C-x]
+C-s = [":write", "normal_mode"] 
+[keys.select]
+C-g = ["exit_select_mode"]
+[keys.normal.C-x]
+q = [":quit"]
+C-s = [":write"]
+C-x = [":write", ":quit-all"]
+C-c = [":buffer-close-others", "wonly"]
+k = [":buffer-close"]
+r = [":reset-diff-change"]

@@ -1,0 +1,14 @@
+*.bak
+.stfolder
+TODO
+backup/
+config.nix
+tmp/
+aichat
+
+helix/*
+!helix/config.toml
+tmux/*
+!tmux/.tmux.conf
+
+keepassxc

@@ -1,0 +1,157 @@
+alias avocat="aichat -r avocat -s"
+# export QT_QPA_PLATFORM=xcb
+
+alias cpu="top -bn 1 -i -c"
+alias detect-audio="pacmd unload-module module-udev-detect && pacmd load-module module-udev-detect"
+alias .='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+alias bathelp='bat --plain --language=help'
+alias genpwd='openssl rand -base64 18 | tee /dev/tty | wl-copy'
+alias tb="nc termbin.com 9999 | xclip -sel c"
+
+function upgrade() {
+  sudo snap refresh
+  sudo apt update
+  sudo apt upgrade -y
+  hx --grammar fetch
+  nix-channel --update
+  home-manager switch
+}
+
+function clean() {
+  journalctl --vacuum-time=7d
+  sudo apt autoremove
+  sudo apt autoclean
+  nix-store --gc
+  nix-collect-garbage -d
+  nix-store --optimise
+}
+
+alias cleanOldKernels="dpkg --list | egrep -i --color 'linux-image|linux-headers|linux-modules' |awk '{ print $2 }' |grep -v "$(uname -r)" |xargs sudo apt purge --yes"
+
+alias ssh='TERM=xterm-256color ssh'
+alias edkeygen='ssh-keygen -t ed25519 -a 100 -C'
+
+secure_perms() {
+  find "$1" -type d -exec chmod 700 {} \;
+  find "$1" -type f -exec chmod 600 {} \;
+}
+
+clear_clipboard="xsel -cb"
+
+gpg_sendkey() {
+  gpg --keyserver certserver.pgp.com --send-keys "$1"
+  gpg --keyserver keyserver.ubuntu.com --send-keys "$1"
+  gpg --keyserver keys.openpgp.org --send-keys "$1"
+  gpg --keyserver pgp.mit.edu --send-keys "$1"
+}
+
+gpg_getkey() {
+  gpg --keyserver certserver.pgp.com --recv-key "$1"
+  gpg --keyserver keyserver.ubuntu.com --recv-key "$1"
+  gpg --keyserver keys.openpgp.org --recv-key "$1"
+  gpg --keyserver pgp.mit.edu --recv-key "$1"
+}
+
+gpg_enc() {
+  gpg -a -se -r "$1"
+}
+
+gpg_dec() {
+  gpg -d
+}
+
+hssh() {
+  local ttyp
+  ttyp=$(stty -g)
+  stty raw -echo opost
+  [[ $(ssh -V 2>&1) == OpenSSH_[67]* ]] && a="no"
+  ssh -o UpdateHostKeys=no -o StrictHostKeyChecking="${a:-accept-new}" -T \
+    "$@" \
+    "unset SSH_CLIENT SSH_CONNECTION; TERM=xterm-256color BASH_HISTORY=/dev/null exec -a [ntp] script -qc 'exec -a [uid] /bin/bash -i' /dev/null"
+  stty "${ttyp}"
+}
+
+path() {
+  echo -e ${PATH//:/\\n}
+}
+
+batdiff() {
+  git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+
+h() {
+  "$@" --help 2>&1 | bathelp
+}
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
+function sr() {
+  local search=$1
+  local replace=$2
+  if [ -z "$search" ]; then
+    echo "must provide search replace args"
+    return 1
+  fi
+  rg --files-with-matches --fixed-strings "${search}" | xargs sed -i "s#${search}#${replace}#g"
+}
+
+# check_power || exit 0
+check_power() {
+  # laptop check, on_ac_power returns:
+  #       0 (true)    System is on main power
+  #       1 (false)   System is not on main power
+  #       255 (false) Power status could not be determined
+  # Desktop systems always return 255 it seems
+  if command -v on_ac_power >/dev/null; then
+    if on_ac_power; then
+      :
+    elif [ $? -eq 1 ]; then
+      return 1
+    fi
+  fi
+  return 0
+}
+
+# Start ssh-agent if it's not already running
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+  ssh-agent -s >"$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+
+# containers
+alias p="podman"
+alias k="kubectl"
+alias d="docker"
+
+alias note="$HOME/skel/bin/note.sh"
+alias todo="$HOME/skel/bin/note.sh todo"
+
+catFunc() {
+  if [ $# -eq 0 ]; then
+    # No arguments, use original cat
+    command cat
+  else
+    # Loop through all arguments
+    for file in "$@"; do
+      if [ -d "$file" ]; then
+        echo "$file"
+        ls -lah "$file" # -lh for human-readable sizes, long format
+      elif [[ "$file" =~ \.[mM][dD]$ ]]; then
+        # If it's a Markdown file, use glow
+        if command -v glow >/dev/null 2>&1; then
+          glow "$file"
+        else
+          command cat "$file"
+        fi
+      else
+        # For all other files, use bat -p
+        if command -v bat >/dev/null 2>&1; then
+          bat -p "$file"
+        else
+          command cat "$file"
+        fi
+      fi
+    done
+  fi
+}
+alias cat=catFunc
+

