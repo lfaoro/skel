@@ -187,7 +187,10 @@ in
       age
       lynx
       exiftool
+
       sshpass # non-interactive SSH
+      openssh_hpn
+      gsocket
 
       yazi # file manager
       jq # json preview

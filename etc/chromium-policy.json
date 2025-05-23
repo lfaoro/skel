@@ -1,0 +1,14 @@
+{
+  "BraveRewardsDisabled": true,
+  "SyncDisabled": false,
+  "MetricsReportingEnabled": false,
+  "SearchSuggestEnabled": false,
+  "BrowserSignin": 0,
+  "BuiltInDnsClientEnabled": false,
+  "DefaultGeolocationSetting": 2,
+  "AllowDinosaurEasterEgg": true,
+  "DefaultSearchProviderEnabled": true,
+  "DefaultSearchProviderName": "brave",
+  "DefaultSearchProviderSearchURL": "https://search.brave.com/search?q={searchTerms}",
+  "BraveWalletDisabled": true
+}
