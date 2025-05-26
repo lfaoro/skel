@@ -463,16 +463,17 @@ in
           eval "$(jump shell zsh)"
       fi
 
-      autoload -Uz compinit && compinit
-      #zstyle ":completion:*" matcher-list "" "m:{a-zA-Z}={A-Za-z}" "r:|=*" "l:|=* r:|=*"
-      zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+      # autoload -Uz compinit && compinit
+      # zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
       PROMPT="%(?.%F{green}√.%F{red}?)%f %n %B%F{240}%2~%f%b > ";
 
       source "$HOME/skel/home/dotup.zsh" || :
+      source "$HOME/skel/home/first_word.zsh" || :
       source "$HOME/skel/home/.aliasrc" || :
     '';
 
+    # note: .aliasrc file contains more aliases.
     shellAliases = {
       sudo = "sudo -i";
 
