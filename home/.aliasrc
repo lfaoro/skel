@@ -1,18 +1,19 @@
-alias avocat="aichat -r avocat -s"
-# export QT_QPA_PLATFORM=xcb
-
 alias cpu="top -bn 1 -i -c"
 alias detect-audio="pacmd unload-module module-udev-detect && pacmd load-module module-udev-detect"
 alias .='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 alias bathelp='bat --plain --language=help'
 alias genpwd='openssl rand -base64 18 | tee /dev/tty | wl-copy'
 alias tb="nc termbin.com 9999 | xclip -sel c"
+alias rsync='rsync -av --progress'
+
+source ~/skel/bin/encrypto.sh
 
 function upgrade() {
   sudo snap refresh
   sudo apt update
   sudo apt upgrade -y
   hx --grammar fetch
+  hx --grammar build
   nix-channel --update
   home-manager switch
 }
@@ -155,3 +156,5 @@ catFunc() {
 }
 alias cat=catFunc
 
+# temp
+alias avocat="aichat -r avocat -s"
