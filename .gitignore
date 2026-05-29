@@ -1,0 +1,17 @@
+*.bak
+.stfolder
+config.nix
+tmp/
+scratch/
+dotfiles/aichat
+dotfiles/keepassxc
+dotfiles/htop/htop_history
+
+dotfiles/tmux/*
+!dotfiles/tmux/.tmux.conf
+
+dotfiles/helix/runtime
+
+# old paths (prior to reorg)
+tmux/
+home/

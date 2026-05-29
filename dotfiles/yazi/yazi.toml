@@ -1,0 +1,20 @@
+# yazi file manager config (minimal)
+[manager]
+ratio = [1, 3, 4]
+sort_by = "alphabetical"
+sort_sensitive = false
+sort_reverse = false
+sort_dir_first = true
+linemode = "none"
+
+[preview]
+max_width = 600
+tab_size = 2
+
+[opener]
+edit = [
+  { run = 'hx "$@"', block = true }
+]
+open = [
+  { run = 'xdg-open "$@"', desc = "Open with default app" }
+]

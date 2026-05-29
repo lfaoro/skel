@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+lynx "https://github.com/search?q=$*&type=repositories"
+

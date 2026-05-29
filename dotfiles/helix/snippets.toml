@@ -1,0 +1,89 @@
+[[snippets]]
+name = "Print to console"
+trigger = "ll"
+body = ["fmt.Println(${1:message})"]
+description = "Log a message to the console"
+
+[[snippets]]
+name = "if err != nil { return err }"
+trigger = "ierr"
+body = ["if err != nil {", "\treturn err", "}"]
+description = "Return the error if not nil"
+language = "go"
+
+[[snippets]]
+name = "if err != nil { return nil, err }"
+trigger = "ierr2"
+body = ["if err != nil {", "\treturn nil, err", "}"]
+description = "Return nil and the error if not nil"
+language = "go"
+
+[[snippets]]
+name = "if err != nil { log.Fatal(err) }"
+trigger = "ifatal"
+body = ["if err != nil {", "\tlog.Fatal(err)", "}"]
+description = "Log fatal if error not nil"
+language = "go"
+
+[[snippets]]
+name = "func main"
+trigger = "main"
+body = ["func main() {", "\t${1}", "}"]
+description = "Main function"
+language = "go"
+
+[[snippets]]
+name = "type struct"
+trigger = "tstruct"
+body = ["type ${1:Name} struct {", "\t${2}", "}"]
+description = "Struct type definition"
+language = "go"
+
+[[snippets]]
+name = "func with error return"
+trigger = "fnerr"
+body = ["func ${1:name}(${2}) error {", "\t${3}", "}"]
+description = "Function returning error"
+language = "go"
+
+[[snippets]]
+name = "method with error return"
+trigger = "mthderr"
+body = ["func (${1:receiver}) ${2:name}(${3}) error {", "\t${4}", "}"]
+description = "Method returning error"
+language = "go"
+
+[[snippets]]
+name = "for range"
+trigger = "forr"
+body = ["for ${1:index} := range ${2:slice} {", "\t${3}", "}"]
+description = "For range loop"
+language = "go"
+
+[[snippets]]
+name = "for i := range"
+trigger = "fori"
+body = ["for i := ${1:0}; i < ${2:len}; i++ {", "\t${3}", "}"]
+description = "Traditional for loop"
+language = "go"
+
+[[snippets]]
+name = "select case"
+trigger = "selcase"
+body = ["select {", "case <-${1:ch}:", "\t${2}", "default:", "\t${3}", "}"]
+description = "Select with default case"
+language = "go"
+
+[[snippets]]
+name = "type switch"
+trigger = "typesw"
+body = ["switch ${1:v} := ${2:x}.(type) {", "case ${3:string}:", "\t${4}", "default:", "\t${5}", "}"]
+description = "Type switch"
+language = "go"
+
+[[snippets]]
+name = "defer"
+trigger = "defer"
+body = ["defer ${1:func}()"]
+description = "Defer function call"
+language = "go"

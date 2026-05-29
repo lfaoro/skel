@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Pre-commit: scan staged changes for sensitive data before committing.
+
+set -euo pipefail
+
+HOOK_DIR="$(/usr/bin/dirname "$0")"
+source "$HOOK_DIR/_sensitive-scan.sh"
+
+files=$(git diff --cached --name-only --diff-filter=ACM 2>/dev/null || true)
+
+if [ -z "$files" ]; then
+	exit 0
+fi
+
+printf '\033[1;34m→ scanning staged files for sensitive data...\033[0m\n'
+
+if scan_staged "$files"; then
+	printf '\033[1;32m✓ nothing sensitive found\033[0m\n'
+	exit 0
+else
+	printf '\n\033[1;31m✗ commit blocked — sensitive data detected above\033[0m\n'
+	exit 1
+fi

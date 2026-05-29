@@ -1,0 +1,17 @@
+theme = Dracula
+# theme = catppuccin-mocha
+
+font-family = Berkeley Mono
+font-size = 15
+font-feature = +ss01
+font-feature = +ss05
+font-feature = +calt
+
+window-colorspace = display-p3
+window-decoration = none
+background-opacity = 0.99
+background-blur-radius = 20
+
+cursor-opacity = 1
+cursor-style = block
+

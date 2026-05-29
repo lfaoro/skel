@@ -1,0 +1,25 @@
+(
+    keybindings: [
+        (key: "F1", command: "open_help"),
+        (key: "h", command: "move_left"),
+        (key: "l", command: "move_right"),
+        (key: "k", command: "move_up"),
+        (key: "j", command: "move_down"),
+        (key: "Ctrl+p", command: "popup_up"),
+        (key: "Ctrl+n", command: "popup_down"),
+        (key: "Ctrl+b", command: "page_up"),
+        (key: "Ctrl+f", command: "page_down"),
+        (key: "g", command: "home"),
+        (key: "Shift+G", command: "end"),
+        (key: "Shift+K", command: "shift_up"),
+        (key: "Shift+J", command: "shift_down"),
+        (key: "Shift+I", command: "edit_file"),
+        (key: "Shift+U", command: "status_reset_item"),
+        (key: "u", command: "diff_reset_lines"),
+        (key: "s", command: "diff_stage_lines"),
+        (key: "w", command: "stashing_save"),
+        (key: "m", command: "stashing_toggle_index"),
+        (key: "l", command: "stash_open"),
+        (key: "Shift+M", command: "abort_merge"),
+    ]
+)

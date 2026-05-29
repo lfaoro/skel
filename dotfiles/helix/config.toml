@@ -1,0 +1,107 @@
+theme = "leo"
+
+[editor]
+auto-format = true
+auto-info = true
+auto-pairs = true
+end-of-line-diagnostics="info"
+scrolloff = 3
+auto-completion = true
+idle-timeout = 50
+bufferline = "always"
+cursorline = true
+cursorcolumn = false
+gutters = ["diff", "line-numbers", "diagnostics"]
+line-number = "absolute"
+mouse = true
+middle-click-paste = true
+true-color = true
+color-modes = true
+[editor.inline-diagnostics]
+cursor-line = "error"
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+[editor.whitespace.render]
+tab = "none"
+space = "none"
+[editor.file-picker]
+hidden = false
+git-ignore = false
+[editor.statusline]
+left = ["mode","spinner","file-name","file-modification-indicator","selections"]
+center = ["diagnostics","workspace-diagnostics"]
+right = ["version-control","position","total-line-numbers","file-encoding","file-line-ending","file-type"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+[editor.lsp]
+auto-signature-help = true
+display-messages = true
+display-inlay-hints = true
+display-signature-help-docs = true
+[editor.soft-wrap]
+enable = true
+wrap-at-text-width = false
+
+[keys.normal.C-w]
+C-d = ["vsplit", "jump_view_up", "goto_definition"]
+
+[keys.normal]
+C-space = ["completion"]
+C-o = ["jump_backward"]
+C-i = ["jump_forward"]
+"-" = ["flip_selections"]
+C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+C-l = ["delete_selection", "paste_after"]
+C-h = ["delete_selection", "move_char_left", "paste_before"]
+X = ["extend_line_above"]
+"C-A-a" = ["decrement"]
+C-a = ["increment"]
+"tab" = ["goto_next_function","flip_selections","align_view_top"]
+"S-tab" = ["goto_prev_function","align_view_top"]
+C-r = [":reload"]
+# C-R = [":config-reload"]
+# A-x = [""]
+# Use system clipboard
+Y = "yank_main_selection_to_clipboard"
+C-ret = ["open_above", "normal_mode"] 
+ret = ["open_below", "normal_mode"] 
+C-s = [":write"]
+C-q = [":quit"]
+
+[keys.normal.space]
+l = [":sh echo -n '%{buffer_name}:%{cursor_line}' | xclip -selection clipboard"]
+z = ":toggle gutters.line-numbers.min-width 48 0"
+x = ":toggle whitespace.render all none"
+r = ":run-shell-command go run *.go"
+m = ":run-shell-command make"
+b = ":run-shell-command go build -o app . && ./app"
+t = ":run-shell-command go test -v ./..."
+q = [":quit"]
+Q = [":quit!"]
+s = [":write"]
+w = [":write", ":quit-all"]
+c = [":buffer-close-others", "wonly"]
+k = [":buffer-close"]
+[keys.insert]
+C-g = ["normal_mode"]
+j = { j = "normal_mode" }
+C-space = ["completion"]
+# emacs navigation
+C-p = ["move_line_up"]
+C-n = ["move_line_down"]
+C-b = ["move_char_left"]
+C-f = ["move_char_right"]
+C-a = ["goto_line_start"]
+C-e = ["goto_line_end", "move_char_right"]
+C-s = [":write", "normal_mode"]
+C-q = [":quit"]
+[keys.select]
+C-g = ["exit_select_mode"]
+C-s = [":write"]
+C-q = [":quit"]
+C-r = [":reset-diff-change"]

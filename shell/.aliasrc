@@ -1,0 +1,213 @@
+# shellcheck shell=bash
+# ── Misc aliases ──────────────────────────────────────────────────────
+alias cpu='top -bn 1 -i -c'
+alias detect-audio='pacmd unload-module module-udev-detect && pacmd load-module module-udev-detect'
+alias .='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+alias bathelp='bat --plain --language=help'
+alias genpwd='openssl rand -base64 18 | tee /dev/tty | wl-copy'
+alias tb='nc termbin.com 9999 | xclip -sel c'
+alias rsync='rsync -av --progress'
+alias ssh='TERM=xterm-256color ssh'
+alias edkeygen='ssh-keygen -t ed25519 -a 100 -C'
+alias sudo='sudo TERM=xterm-256color'
+
+# ── Containers ───────────────────────────────────────────────────────
+alias p='podman'
+alias k='kubectl'
+alias d='docker'
+
+# ── Git ──────────────────────────────────────────────────────────────
+alias gs='git status'
+alias gc='git commit -m'
+alias ga='git add'
+alias gd='git diff --unified=5 --diff-filter=M'
+alias gds='git diff --staged --unified=5 --diff-filter=M'
+alias gp='git push'
+alias gpu='git pull'
+alias gl='git log --stat'
+
+# ── Modern replacements ─────────────────────────────────────────────
+alias ls='eza'
+alias l='eza -as modified --group-directories-first'
+alias ll='eza --git -lahgs modified --group-directories-first -s extension'
+alias t='eza --tree --level=2'
+alias tt='eza --tree --level=4'
+alias ttt='eza --tree --level=6'
+alias grep='rg'
+alias rg='rg -uuui'
+alias calc='kalker'
+alias fd='fd -IH'
+alias duf='duf --hide-fs tmpfs,devtmpfs'
+
+# ── Clipboard ────────────────────────────────────────────────────────
+copy() {
+	if command -v wl-copy >/dev/null 2>&1; then
+		wl-copy "$@"
+	elif command -v xclip >/dev/null 2>&1; then
+		xclip -sel c "$@"
+	elif command -v xsel >/dev/null 2>&1; then
+		xsel -bi "$@"
+	fi
+}
+alias clip=copy
+alias pbcopy=copy
+
+# ── Utilities ────────────────────────────────────────────────────────
+alias hm='unset __HM_SESS_VARS_SOURCED ; home-manager'
+alias oc='opencode'
+alias ip='ip --color=auto'
+alias '?=duck'
+alias note='$HOME/skel/bin/note.sh'
+alias todo='$HOME/skel/bin/note.sh todo'
+alias avocat="aichat -r avocat -s"
+alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
+alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
+
+# ── Functions ─────────────────────────────────────────────────────────
+
+run() { nix run "nixpkgs#$1" -- "${@:2}"; }
+
+upgrade() (
+	set -euo pipefail
+	sudo snap refresh
+	sudo apt update
+	sudo apt upgrade -y
+	nix-channel --update
+	home-manager switch -n
+	home-manager switch
+)
+
+clean() (
+	set -euo pipefail
+	sudo journalctl --vacuum-time=7d
+	sudo apt autoremove
+	sudo apt autoclean
+	dpkg -l | awk '/^rc/{print $2}' | xargs -r sudo apt purge -y
+	nix-collect-garbage -d
+	nix-store --optimise 2>&1 | grep -v 'skipping suspicious writable file'
+	snap_clean
+)
+
+snap_clean() (
+	set -euo pipefail
+	if ! command -v snap &>/dev/null; then
+		return 0
+	fi
+	sudo snap list --all | awk '/disabled/{print $1, $3}' |
+		while read -r snapname revision; do
+			sudo snap remove "$snapname" --revision="$revision"
+		done
+)
+
+perms() {
+	echo "applying security perms 600 for files, 700 for folders"
+	find "$1" -type d -exec chmod 700 {} \;
+	find "$1" -type f -exec chmod 600 {} \;
+}
+
+gpg_sendkey() {
+	gpg --keyserver certserver.pgp.com --send-keys "$1"
+	gpg --keyserver keyserver.ubuntu.com --send-keys "$1"
+	gpg --keyserver keys.openpgp.org --send-keys "$1"
+	gpg --keyserver pgp.mit.edu --send-keys "$1"
+}
+
+gpg_getkey() {
+	gpg --keyserver certserver.pgp.com --recv-key "$1"
+	gpg --keyserver keyserver.ubuntu.com --recv-key "$1"
+	gpg --keyserver keys.openpgp.org --recv-key "$1"
+	gpg --keyserver pgp.mit.edu --recv-key "$1"
+}
+
+gpg_enc() { gpg -a -se -r "$1"; }
+gpg_dec() { gpg -d; }
+path() { echo -e "${PATH//:/\\n}"; }
+
+hssh() {
+	local ttyp
+	ttyp=$(stty -g)
+	stty raw -echo opost
+	[[ $(ssh -V 2>&1) == OpenSSH_[67]* ]] && a="no"
+	ssh -o UpdateHostKeys=no -o StrictHostKeyChecking="${a:-accept-new}" -T \
+		"$@" \
+		"unset SSH_CLIENT SSH_CONNECTION; TERM=xterm-256color BASH_HISTORY=/dev/null exec -a [ntp] script -qc 'exec -a [uid] /bin/bash -i' /dev/null"
+	stty "${ttyp}"
+}
+
+batdiff() {
+	git diff --name-only --relative --diff-filter=d | xargs bat --diff
+}
+
+h() { "$@" --help 2>&1 | bathelp; }
+
+sr() {
+	local search=$1
+	local replace=$2
+	if [ -z "$search" ]; then
+		echo "must provide search replace args"
+		return 1
+	fi
+	rg --files-with-matches --fixed-strings "${search}" | xargs sed -i "s#${search}#${replace}#g"
+}
+
+catFunc() (
+	set -euo pipefail
+	export LESS=-R
+	if [[ $# -eq 0 ]]; then
+		command cat
+		return
+	fi
+	for file in "$@"; do
+		if [[ -d "$file" ]]; then
+			echo "$file"
+			ls -lah -- "$file"
+		elif [[ "$file" =~ \.[mM][dD]$ ]]; then
+			if command -v glow >/dev/null 2>&1; then
+				glow --tui -- "$file"
+			else
+				command cat -- "$file"
+			fi
+		else
+			if command -v bat >/dev/null 2>&1; then
+				bat -p -- "$file"
+			else
+				command cat -- "$file"
+			fi
+		fi
+	done
+)
+alias cat=catFunc
+
+gac() {
+	local valid=(feat fix docs style refactor perf test build ci chore revert)
+	if [[ $# -lt 2 ]]; then
+		echo "usage: gac <type> <message...>" >&2
+		echo "types: ${valid[*]}" >&2
+		return 1
+	fi
+	local type="$1"
+	shift
+	if [[ ! " ${valid[*]} " =~ \ $type\  ]]; then
+		echo "invalid type '$type'. valid: ${valid[*]}" >&2
+		return 1
+	fi
+	git add . && git commit -m "${type}: $*"
+}
+
+# ── Tmux ─────────────────────────────────────────────────────────────
+tmux() {
+  if [[ $# -eq 0 ]]; then
+    command tmux attach 2>/dev/null || command tmux new-session -s main
+  else
+    command tmux "$@"
+  fi
+}
+
+# ── Startup ─────────────────────────────────────────────────────────
+
+# shellcheck disable=SC1090
+source ~/skel/bin/encrypto.sh
+
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+	ssh-agent -s >"$XDG_RUNTIME_DIR/ssh-agent.env"
+fi

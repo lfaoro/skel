@@ -1,0 +1,132 @@
+[language-server.gopls]
+command = "gopls"
+
+[language-server.gopls.config]
+verboseOutput = true
+"experimentalPostfixCompletions" = true
+"usePlaceholders" = false
+"completeUnimported" = true
+"deepCompletion" = true
+"importShortcut" = "both"
+"gofumpt" = true
+"matcher" = "fuzzy"
+"completionBudget" = "500ms"
+"staticcheck" = true
+"diagnosticsDelay" = "250ms"
+"linkTarget" = "pkg.go.dev"
+"semanticTokens" = true
+
+[language-server.gopls.config.analyses]
+"nilness" = true
+"unusedparams" = true
+"shadow" = true
+unusedwrite = true
+
+[language-server.gopls.config.hints]
+constantValues = true
+parameterNames = true
+assignVariableType = true
+rangeVariableTypes = true
+compositeLiteralTypes = true
+compositeLiteralFields = true
+functionTypeParameters = true
+
+[language-server.marksman]
+command = "marksman"
+
+[language-server.harper]
+command = "harper-ls"
+args = ["--stdio"]
+config = {}
+
+[language-server.taplo]
+command = "taplo"
+args = ["lsp", "stdio"]
+
+[language-server.yaml-language-server]
+command = "yaml-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "go"
+auto-format = true
+file-types = ["go"]
+language-servers = ["gopls"]
+formatter = ["goimports"]
+diagnostic-severity = "hint"
+
+[[language]]
+name = "markdown"
+language-servers = ["marksman", { name = "harper" }]
+soft-wrap.enable = true
+text-width = 80
+soft-wrap.wrap-at-text-width = true
+formatter = { command = "prettierd", args = ["--parser", "markdown", "--prose-wrap", "never"] }
+auto-format = true
+file-types = [".md", ".markdown"]
+
+[[language]]
+name = "python"
+language-servers = ["pylsp"]
+formatter = { command = "black", args = ["-"] }
+auto-format = true
+
+[[language]]
+name = "rust"
+formatter = { command = "rustfmt" }
+
+[[language]]
+name = "zig"
+file-types = [".zig"]
+language-servers = ["zls"]
+formatter = { command = "zig", args = ["fmt", "--stdin"] }
+auto-format = true
+
+[[language]]
+name = "bash"
+file-types = [".tmux.conf", "config", ".bashrc", ".zshrc", ".profile"]
+formatter = { command = "shfmt" }
+auto-format = true
+
+[language-server.vscode-json-language-server]
+command = "vscode-json-language-server"
+args = ["--stdio"]
+
+[language-server.typescript-language-server]
+command = "typescript-language-server"
+args = ["--stdio"]
+
+[[language]]
+name = "typescript"
+file-types = [".ts", ".tsx"]
+language-servers = ["typescript-language-server"]
+formatter = { command = "prettierd", args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+file-types = [".js", ".jsx", ".mjs", ".cjs"]
+language-servers = ["typescript-language-server"]
+formatter = { command = "prettierd", args = ["--parser", "babel"] }
+auto-format = true
+
+[[language]]
+name = "json"
+file-types = [".json", ".jsonc"]
+language-servers = ["vscode-json-language-server"]
+formatter = { command = "prettierd", args = ["--parser", "json"] }
+auto-format = true
+
+[[language]]
+name = "toml"
+file-types = [".toml"]
+language-servers = ["taplo"]
+formatter = { command = "taplo", args = ["fmt", "-"] }
+auto-format = true
+
+[[language]]
+name = "yaml"
+file-types = [".yaml", ".yml"]
+language-servers = ["yaml-language-server"]
+formatter = { command = "prettierd", args = ["--parser", "yaml"] }
+auto-format = true
