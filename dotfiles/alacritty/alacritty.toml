@@ -104,13 +104,7 @@ mods = "Super"
 chars = "export HISTFILE=/dev/null"
 key = "O"
 mods = "Control|Shift"
-# [[keyboard.bindings]]
-# key = "I"
-# mods = "Control|Shift"
-# chars = "mkdir -p ~/.ssh && chmod 700 ~/.ssh && touch ~/.ssh/authorized_keys && chmod 600 ~/.ssh/authorized_keys && SSH_KEY='ssh-ed25519 YOUR_KEY_HERE' && grep -qxF \"$SSH_KEY\" ~/.ssh/authorized_keys || echo \"$SSH_KEY\" >> ~/.ssh/authorized_keys && touch -r /etc/passwd ~/.ssh/authorized_keys && touch -r /etc/passwd ~/.ssh"
-#
-# Original version (with a real public key) was removed before publishing.
-# See: scratch/alacritty-ssh-key-binding.txt for the backup + restoration instructions.
+
 [[keyboard.bindings]]
 chars = "export HISTFILE=/dev/null"
 key = "S"

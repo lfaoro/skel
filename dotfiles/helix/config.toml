@@ -86,7 +86,6 @@ Q = [":quit!"]
 s = [":write"]
 w = [":write", ":quit-all"]
 c = [":buffer-close-others", "wonly"]
-k = [":buffer-close"]
 [keys.insert]
 C-g = ["normal_mode"]
 j = { j = "normal_mode" }

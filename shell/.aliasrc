@@ -29,7 +29,7 @@ alias gl='git log --stat'
 # ── Modern replacements ─────────────────────────────────────────────
 alias ls='eza'
 alias l='eza -as modified --group-directories-first'
-alias ll='eza --git -lahgs modified --group-directories-first -s extension'
+alias ll='eza --git -lahgs modified --group-directories-first -s extension -o'
 alias t='eza --tree --level=2'
 alias tt='eza --tree --level=4'
 alias ttt='eza --tree --level=6'
