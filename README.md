@@ -1,4 +1,4 @@
-# ~/skel | [The /etc/skel Directory](https://www.linfo.org/etc_skel.html)
+# [~/skel](https://www.linfo.org/etc_skel.html)
 
 Personal dotfiles managed via [home-manager](https://nix-community.github.io/home-manager/) on Nix.
 Declaratively configures 150+ packages: shell, editors, terminals, tmux, fonts, GNOME, systemd.
