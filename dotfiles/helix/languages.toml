@@ -61,9 +61,14 @@ language-servers = ["marksman", { name = "harper" }]
 soft-wrap.enable = true
 text-width = 80
 soft-wrap.wrap-at-text-width = true
-formatter = { command = "prettierd", args = ["--parser", "markdown", "--prose-wrap", "never"] }
+formatter = { command = 'prettierd', args = [
+  "--parser",
+  "markdown",
+  "--prose-wrap",
+  "never",        # <always|never|preserve>
+] }
 auto-format = true
-file-types = [".md", ".markdown"]
+# file-types = [".md", ".markdown"]
 
 [[language]]
 name = "python"
@@ -119,7 +124,6 @@ auto-format = true
 
 [[language]]
 name = "toml"
-file-types = [".toml"]
 language-servers = ["taplo"]
 formatter = { command = "taplo", args = ["fmt", "-"] }
 auto-format = true

@@ -74,18 +74,24 @@ C-s = [":write"]
 C-q = [":quit"]
 
 [keys.normal.space]
+e = [
+  ':sh rm -f /tmp/unique-file',
+  ':insert-output yazi "%{buffer_name}" --chooser-file=/tmp/unique-file',
+  ':sh printf "\x1b[?1049h\x1b[?2004h" > /dev/tty',
+  ':open %sh{cat /tmp/unique-file}',
+  ':redraw',
+]
 l = [":sh echo -n '%{buffer_name}:%{cursor_line}' | xclip -selection clipboard"]
 z = ":toggle gutters.line-numbers.min-width 48 0"
-x = ":toggle whitespace.render all none"
 r = ":run-shell-command go run *.go"
 m = ":run-shell-command make"
 b = ":run-shell-command go build -o app . && ./app"
 t = ":run-shell-command go test -v ./..."
 q = [":quit"]
 Q = [":quit!"]
-s = [":write"]
 w = [":write", ":quit-all"]
 c = [":buffer-close-others", "wonly"]
+x = [":buffer-close", "wonly"]
 [keys.insert]
 C-g = ["normal_mode"]
 j = { j = "normal_mode" }

@@ -1,9 +1,9 @@
-# skel
+# ~/skel | [The /etc/skel Directory](https://www.linfo.org/etc_skel.html)
 
 Personal dotfiles managed via [home-manager](https://nix-community.github.io/home-manager/) on Nix.
 Declaratively configures 150+ packages: shell, editors, terminals, tmux, fonts, GNOME, systemd.
 
-## Quick start
+## Quick Start
 
 ```bash
 git clone https://github.com/lfaoro/skel --recurse-submodules
@@ -23,11 +23,11 @@ Install miscellaneous CLI tools (jump, lynx, etc.)? [y/N]:
 Remap Caps Lock to Ctrl? [y/N]:
 ```
 
-All defaults are conservative (off). You can re-run or edit `config.nix` anytime later. Non-interactive runs (e.g. piped) silently default to all-off. When GUI is enabled, install also sets up nixGL and Brave browser policy.
+All defaults are conservative (off). You can re-run or edit `config.nix` anytime later. Noninteractive runs (e.g. piped) silently default to all-off. When GUI is enabled, install also sets up nixGL and Brave browser policy.
 
-## What's configured
+## What's Configured
 
-- **Shell**: Zsh with aliases, autosuggestions, syntax highlighting, fzf, zoxide
+- **Shell**: Zsh with aliases, autosuggestion, syntax highlighting, fzf, zoxide
 - **Editor**: Helix with LSPs (Go, Rust, Python, TS, Bash, YAML, Nix, Markdown)
 - **Terminal**: Alacritty (primary), Ghostty
 - **Multiplexer**: tmux with tilish layout (`M-;` prefix, `main-vertical`)
@@ -65,7 +65,7 @@ home-manager switch -n  # dry-run
 home-manager switch     # apply
 ```
 
-## Daily maintenance
+## Daily Maintenance
 
 ```bash
 hm          # home-manager (aliased: unsets __HM_SESS_VARS_SOURCED first)
@@ -75,7 +75,7 @@ note        # take a note
 note todo   # todo list
 ```
 
-## Adding packages / dotfiles
+## Adding Packages / Dotfiles
 
 For new symlinked config directories, add an entry in `modules/dotfiles.nix`:
 
@@ -89,7 +89,7 @@ For packages, add to the appropriate list in `modules/packages/<category>.nix`, 
 
 Never use `nix-env -i` or `nix profile install`.
 
-## Repository structure
+## Repository Structure
 
 ```
 skel/
@@ -112,4 +112,4 @@ skel/
 
 ## License
 
-Source Available — see LICENSE.md
+MIT — see LICENSE.md
