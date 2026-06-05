@@ -30,26 +30,22 @@ y = 0
 size = 15
 offset.x = 0
 offset.y = 0
-# [font.normal]
-# family = "monospace"
-# not yet available, maybe someday...
-# family = "Hack Nerd Font"
-# ligatures = true
-[font.bold]
-family = "monospace"
-style = "Bold"
-
-[font.bold_italic]
-family = "monospace"
-style = "Bold Italic"
-
-[font.italic]
-family = "monospace"
-style = "Italic"
 
 [font.normal]
-family = "monospace"
+family = "Hack Nerd Font Mono"
 style = "Regular"
+
+[font.bold]
+family = "Hack Nerd Font Mono"
+style = "Bold"
+
+[font.italic]
+family = "Hack Nerd Font Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "Hack Nerd Font Mono"
+style = "Bold Italic"
 
 # [[keyboard.bindings]]
 # key = "N"

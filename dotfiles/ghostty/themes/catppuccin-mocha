@@ -1,0 +1,11 @@
+# This is a thin wrapper so that `theme = catppuccin-mocha` works
+# (the common Catppuccin slug name used elsewhere in this dotfiles).
+#
+# It simply includes the built-in Ghostty Catppuccin Mocha theme.
+# The built-in lives in the snap resources.
+#
+# This file lives in dotfiles so it's managed declaratively.
+# After adding this, run `home-manager switch` (or at least the activation)
+# so the ~/.config/ghostty/themes/ directory gets the file via the home-manager-files generation.
+
+config-file = /snap/ghostty/current/share/ghostty/themes/Catppuccin Mocha

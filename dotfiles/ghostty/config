@@ -1,7 +1,18 @@
-theme = Dracula
-# theme = catppuccin-mocha
+# Catppuccin Mocha to match Alacritty + tmux setup.
+# Ghostty ships with built-in Catppuccin themes (resources).
+# We use the slug "catppuccin-mocha" (common in the Catppuccin ecosystem
+# and matching our tmux/alacritty). This works because we provide a thin
+# wrapper file in themes/catppuccin-mocha that includes the real built-in.
+theme = catppuccin-mocha
+# theme = Dracula
 
-font-family = Berkeley Mono
+# Make text selection (mouse or otherwise) use a yellow hue to match the
+# tmux copy-mode selection below. With background-opacity < 1 this appears
+# as a tinted/"transparent" highlight.
+selection-background = "#f9e2af"
+selection-foreground = "#1e1e2e"
+
+font-family = "Hack Nerd Font Mono"
 font-size = 15
 font-feature = +ss01
 font-feature = +ss05
@@ -9,9 +20,24 @@ font-feature = +calt
 
 window-colorspace = display-p3
 window-decoration = none
+
+# Remove default padding (2pt) so the terminal content uses the full window
+# real estate. Matches the explicit zero padding in Alacritty config.
+window-padding-x = 0
+window-padding-y = 0
+
 background-opacity = 0.99
-background-blur-radius = 20
+# Note: background-blur (not -radius) for modern Ghostty.
+background-blur = 20
 
 cursor-opacity = 1
 cursor-style = block
+
+# Replicate Alacritty's special Ctrl+; binding so that Ctrl+; triggers
+# tmux's prefix (bound to M-;) the same way Alt+; would. Alacritty does
+# `chars = "\u001b;"` for `key = "Semicolon", mods = "Control"`.
+# We use Ghostty's `esc:;` action (sends ESC + ";") for the same effect.
+# Without this, Ghostty encodes Ctrl+; using Kitty keyboard protocol
+# (or sends plain ";"), which doesn't match tmux's legacy prefix sequence.
+keybind = ctrl+;=esc:;
 

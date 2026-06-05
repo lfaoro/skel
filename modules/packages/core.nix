@@ -8,6 +8,7 @@
     tmux # terminal multiplexer
 
     yazi # terminal file manager
+    ueberzugpp # draw images on terminals
     broot # interactive file tree
     ripgrep # fast recursive grep
     fd # fast find replacement
