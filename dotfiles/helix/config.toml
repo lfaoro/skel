@@ -1,10 +1,11 @@
-theme = "leo"
+# theme = "leo"
+theme = "catpuccin_mocha"
 
 [editor]
 auto-format = true
 auto-info = true
 auto-pairs = true
-end-of-line-diagnostics="info"
+end-of-line-diagnostics = "info"
 scrolloff = 3
 auto-completion = true
 idle-timeout = 50
@@ -30,9 +31,22 @@ space = "none"
 hidden = false
 git-ignore = false
 [editor.statusline]
-left = ["mode","spinner","file-name","file-modification-indicator","selections"]
-center = ["diagnostics","workspace-diagnostics"]
-right = ["version-control","position","total-line-numbers","file-encoding","file-line-ending","file-type"]
+left = [
+  "mode",
+  "spinner",
+  "file-name",
+  "file-modification-indicator",
+  "selections",
+]
+center = ["diagnostics", "workspace-diagnostics"]
+right = [
+  "version-control",
+  "position",
+  "total-line-numbers",
+  "file-encoding",
+  "file-line-ending",
+  "file-type",
+]
 separator = "│"
 mode.normal = "NORMAL"
 mode.insert = "INSERT"
@@ -55,21 +69,26 @@ C-o = ["jump_backward"]
 C-i = ["jump_forward"]
 "-" = ["flip_selections"]
 C-j = ["extend_to_line_bounds", "delete_selection", "paste_after"]
-C-k = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+C-k = [
+  "extend_to_line_bounds",
+  "delete_selection",
+  "move_line_up",
+  "paste_before",
+]
 C-l = ["delete_selection", "paste_after"]
 C-h = ["delete_selection", "move_char_left", "paste_before"]
 X = ["extend_line_above"]
 "C-A-a" = ["decrement"]
 C-a = ["increment"]
-"tab" = ["goto_next_function","flip_selections","align_view_top"]
-"S-tab" = ["goto_prev_function","align_view_top"]
+"tab" = ["goto_next_function", "flip_selections", "align_view_top"]
+"S-tab" = ["goto_prev_function", "align_view_top"]
 C-r = [":reload"]
 # C-R = [":config-reload"]
 # A-x = [""]
 # Use system clipboard
 Y = "yank_main_selection_to_clipboard"
-C-ret = ["open_above", "normal_mode"] 
-ret = ["open_below", "normal_mode"] 
+C-ret = ["open_above", "normal_mode"]
+ret = ["open_below", "normal_mode"]
 C-s = [":write"]
 C-q = [":quit"]
 
@@ -85,7 +104,6 @@ l = [":sh echo -n '%{buffer_name}:%{cursor_line}' | xclip -selection clipboard"]
 z = ":toggle gutters.line-numbers.min-width 48 0"
 r = ":run-shell-command go run *.go"
 m = ":run-shell-command make"
-b = ":run-shell-command go build -o app . && ./app"
 t = ":run-shell-command go test -v ./..."
 q = [":quit"]
 Q = [":quit!"]

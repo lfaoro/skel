@@ -118,7 +118,6 @@ in
   ];
 
   # ── Programs ───────────────────────────────────────────────────────
-
   programs.direnv.enable = true;
   programs.command-not-found.enable = true;
 

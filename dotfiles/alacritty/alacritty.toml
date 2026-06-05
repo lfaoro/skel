@@ -1,10 +1,11 @@
 [general]
 import = [
-    "~/.config/alacritty/themes/themes/catppuccin_macchiato.toml"
-    # "~/.config/alacritty/themes/themes/base16_default_dark.toml"
-      # "~/.config/alacritty/catppuccin-latte.toml"
-    # "~/.config/alacritty/catppuccin-frappe.toml"
-    # "~/.config/alacritty/catppuccin-mocha.toml"
+  "~/.config/alacritty/themes/themes/catppuccin_mocha.toml",
+  # "~/.config/alacritty/themes/themes/catppuccin_macchiato.toml"
+  # "~/.config/alacritty/themes/themes/base16_default_dark.toml"
+  # "~/.config/alacritty/catppuccin-latte.toml"
+  # "~/.config/alacritty/catppuccin-frappe.toml"
+  # "~/.config/alacritty/catppuccin-mocha.toml"
 ]
 
 [cursor]
@@ -128,5 +129,3 @@ semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
 [terminal.shell]
 args = ["-l", "-c", "tmux new-session -A -s main"]
 program = "/usr/bin/zsh"
-
-
