@@ -76,10 +76,14 @@ with lib.hm.gvariant;
       clock-show-seconds = false;
       clock-show-weekday = true;
       color-scheme = "prefer-dark";
+      cursor-size = 32;
+      cursor-theme = "Yaru";
+      enable-animations = false;
       font-hinting = "slight";
+      font-name = "Hack Nerd Font Propo 11";
       gtk-key-theme = "Emacs";
-      # gtk-theme = "Nordic";
-      # icon-theme = "Nordzy";
+      gtk-theme = "Yaru-dark";
+      icon-theme = "Yaru";
       show-battery-percentage = true;
     };
 
@@ -105,6 +109,7 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/privacy" = {
+      old-files-age = mkUint32 30;
       recent-files-max-age = 1;
       remember-recent-files = false;
       remove-old-temp-files = true;
@@ -135,6 +140,8 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/desktop/wm/preferences" = {
+      button-layout = ":close";
+      num-workspaces = 1;
       theme = "Nordic";
     };
 
@@ -152,9 +159,11 @@ with lib.hm.gvariant;
     };
 
     "org/gnome/shell/extensions/dash-to-dock" = {
+      dash-max-icon-size = 48;
       dock-fixed = false;
       dock-position = "RIGHT";
       extend-height = false;
+      multi-monitor = true;
       show-mounts-network = false;
       show-mounts-only-mounted = true;
     };

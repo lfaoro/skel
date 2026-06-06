@@ -26,6 +26,9 @@ window-decoration = none
 window-padding-x = 0
 window-padding-y = 0
 
+window-width = 999
+window-height = 999
+
 background-opacity = 0.99
 # Note: background-blur (not -radius) for modern Ghostty.
 background-blur = 20
@@ -39,5 +42,7 @@ cursor-style = block
 # We use Ghostty's `esc:;` action (sends ESC + ";") for the same effect.
 # Without this, Ghostty encodes Ctrl+; using Kitty keyboard protocol
 # (or sends plain ";"), which doesn't match tmux's legacy prefix sequence.
+command = zsh -l -c "tmux new-session -A -s main"
+
 keybind = ctrl+;=esc:;
 

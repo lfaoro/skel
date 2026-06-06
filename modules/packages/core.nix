@@ -47,5 +47,7 @@
     nerd-fonts.hack # Hack Nerd Font
     nerd-fonts.fira-code # Fira Code Nerd Font
     noto-fonts-color-emoji # emoji font
+
+    rmpc # TUI client for MPD (Music Player Daemon)
   ];
 }

@@ -78,7 +78,7 @@ in
     VISUAL = "hx";
     SUDO_EDITOR = "hx";
 
-    XCURSOR_SIZE = "48";
+    XCURSOR_SIZE = "32";
 
     PAGER = "bat";
     BAT_THEME = "Nord";

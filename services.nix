@@ -1,5 +1,6 @@
 {
   pkgs,
+  config,
   ...
 }:
 
@@ -43,8 +44,20 @@
     };
   };
 
+  services.mpd = {
+    enable = true;
+    musicDirectory = "${config.home.homeDirectory}/sync/music";
+    extraConfig = ''
+      audio_output {
+        type "pipewire"
+        name "PipeWire"
+      }
+    '';
+  };
+
   systemd.user.tmpfiles.rules = [
     "d %h/.local/share/osquery/log - - - - -"
     "d %h/.local/share/osquery/db - - - - -"
+    "d %h/sync/music - - - - -"
   ];
 }

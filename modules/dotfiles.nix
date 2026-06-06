@@ -26,6 +26,7 @@ let
     ".config/gitui" = "dotfiles/gitui";
     ".config/lazygit" = "dotfiles/lazygit";
     ".config/ghostty" = "dotfiles/ghostty";
+    ".config/rmpc" = "dotfiles/rmpc";
     ".config/helix" = "dotfiles/helix";
     ".config/htop" = "dotfiles/htop";
     ".config/lynx/lynx.cfg" = "dotfiles/lynx/lynx.cfg";
