@@ -48,6 +48,17 @@ in
     };
   };
 
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      syntax-theme = "Catppuccin Mocha";
+      line-numbers = true;
+      navigate = true;
+      side-by-side = false;
+    };
+  };
+
   xdg.configFile."git/ignore".text = ''
     # Compiled source #
     ###################

@@ -81,7 +81,7 @@ in
     XCURSOR_SIZE = "32";
 
     PAGER = "bat";
-    BAT_THEME = "Nord";
+    BAT_THEME = "Catppuccin Mocha";
 
     DOT = "$HOME/skel";
     WWW_HOME = "https://lite.duckduckgo.com/lite/?kae=d&kp=-2&kz=-1&kav=1&kaj=m&kau=-1&kaq=-1&kap=-1&kao=-1&kax=-1&kak=-1&kay=b&k1=-1&q=$1";

@@ -203,6 +203,55 @@ tmux() {
   fi
 }
 
+# ── Theme (Catppuccin Mocha) ───────────────────────────────────────
+
+# zsh-syntax-highlighting: map highlight groups to Catppuccin Mocha hex
+# shellcheck disable=SC2034
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[command]=fg=#89b4fa
+ZSH_HIGHLIGHT_STYLES[builtin]=fg=#89b4fa
+ZSH_HIGHLIGHT_STYLES[function]=fg=#89b4fa
+ZSH_HIGHLIGHT_STYLES[alias]=fg=#89b4fa
+ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=#f38ba8
+ZSH_HIGHLIGHT_STYLES[hashed-command]=fg=#f5c2e7
+ZSH_HIGHLIGHT_STYLES[precommand]=fg=#f5c2e7
+ZSH_HIGHLIGHT_STYLES[path]=fg=#a6e3a1
+ZSH_HIGHLIGHT_STYLES[path_prefix]=none
+ZSH_HIGHLIGHT_STYLES[path_approx]=fg=#f9e2af
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]=fg=#f9e2af
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]=fg=#f9e2af
+ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=#f38ba8
+ZSH_HIGHLIGHT_STYLES[assign]=fg=#94e2d5
+ZSH_HIGHLIGHT_STYLES[redirection]=fg=#f9e2af
+ZSH_HIGHLIGHT_STYLES[comment]=fg=#585b70
+ZSH_HIGHLIGHT_STYLES[globbing]=fg=#94e2d5
+ZSH_HIGHLIGHT_STYLES[history-expansion]=fg=#f5c2e7
+ZSH_HIGHLIGHT_STYLES[suffix-alias]=fg=#a6e3a1
+ZSH_HIGHLIGHT_STYLES[autodirectory]=fg=#a6e3a1
+ZSH_HIGHLIGHT_STYLES[global-alias]=fg=#94e2d5
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]=fg=#fab387
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=#fab387
+ZSH_HIGHLIGHT_STYLES[back-dollar-quoted-argument]=fg=#fab387
+export ZSH_HIGHLIGHT_STYLES
+
+# fzf: Catppuccin Mocha UI colors
+export FZF_DEFAULT_OPTS=" \
+  --color=bg:#1e1e2e \
+  --color=bg+:#313244 \
+  --color=fg:#cdd6f4 \
+  --color=fg+:#cdd6f4 \
+  --color=hl:#f38ba8 \
+  --color=hl+:#f38ba8 \
+  --color=header:#f38ba8 \
+  --color=info:#cba6f7 \
+  --color=marker:#a6e3a1 \
+  --color=pointer:#a6e3a1 \
+  --color=prompt:#89b4fa \
+  --color=spinner:#89b4fa \
+  --color=query:#cdd6f4 \
+  --color=border:#313244 \
+  --color=label:#cdd6f4"
+
 # ── Startup ─────────────────────────────────────────────────────────
 
 # shellcheck disable=SC1090
