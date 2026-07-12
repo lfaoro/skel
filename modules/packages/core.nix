@@ -18,6 +18,7 @@
     jq # JSON processor
     curl # URL transfer tool
     wget # file downloader
+    whois # domain whois lookup
     coreutils # GNU core utilities
     gnupg # GNU Privacy Guard
     age # modern file encryption
@@ -30,6 +31,7 @@
 
     duf # modern df
     htop # interactive process viewer
+    ftop # filesystem monitor
     btop # resource monitor
     lsof # list open files
     ncdu # disk usage analyzer

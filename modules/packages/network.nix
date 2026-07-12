@@ -16,15 +16,14 @@ in
         masscan # fast port scanner
         rustscan # fast port scanner
         tshark # terminal wireshark
+        termshark # terminal wireshark
         netcat # TCP/UDP swiss army knife
         socat # socket relay
         websocat # WebSocket relay
         iftop # bandwidth monitor
         nethogs # per-process network monitor
-        ftop # filesystem monitor
         crunch # wordlist generator
         ipcalc # IP calculator
-        whois # domain whois lookup
         inetutils # network utilities (telnet, ftp)
         nettools # net-tools (ifconfig, netstat)
       ]
