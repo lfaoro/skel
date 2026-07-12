@@ -1,11 +1,17 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }:
 
+let
+  configOpt = import ./config.nix;
+in
 {
-  systemd.user.services.osqueryd = {
+  home.packages = lib.mkIf configOpt.useOsquery [ pkgs.osquery ];
+
+  systemd.user.services.osqueryd = lib.mkIf configOpt.useOsquery {
     Unit = {
       Description = "osquery daemon";
       After = [ "network.target" ];
@@ -20,7 +26,7 @@
     };
   };
 
-  systemd.user.services.osquery-alert = {
+  systemd.user.services.osquery-alert = lib.mkIf configOpt.useOsquery {
     Unit = {
       Description = "osquery alert checker";
       After = [ "osqueryd.service" ];
@@ -31,7 +37,7 @@
     };
   };
 
-  systemd.user.timers.osquery-alert = {
+  systemd.user.timers.osquery-alert = lib.mkIf configOpt.useOsquery {
     Unit = {
       Description = "Run osquery alert check";
     };
@@ -55,9 +61,12 @@
     '';
   };
 
-  systemd.user.tmpfiles.rules = [
-    "d %h/.local/share/osquery/log - - - - -"
-    "d %h/.local/share/osquery/db - - - - -"
-    "d %h/sync/music - - - - -"
-  ];
+  systemd.user.tmpfiles.rules =
+    lib.optionals configOpt.useOsquery [
+      "d %h/.local/share/osquery/log - - - - -"
+      "d %h/.local/share/osquery/db - - - - -"
+    ]
+    ++ [
+      "d %h/sync/music - - - - -"
+    ];
 }

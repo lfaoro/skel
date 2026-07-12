@@ -13,6 +13,7 @@
 { config, lib, ... }:
 
 let
+  configOpt = import ../config.nix;
   skelRoot = "${config.home.homeDirectory}/skel";
 
   symlinkDot = _: skelPath: {
@@ -21,7 +22,11 @@ let
 
   dotfileMap = {
     ".config/alacritty" = "dotfiles/alacritty";
+  }
+  // lib.optionalAttrs configOpt.useOsquery {
     ".config/osquery" = "dotfiles/osquery";
+  }
+  // {
     ".config/yazi" = "dotfiles/yazi";
     ".config/gitui" = "dotfiles/gitui";
     ".config/lazygit" = "dotfiles/lazygit";

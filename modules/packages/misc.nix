@@ -19,7 +19,6 @@ in
         bc # arbitrary precision calculator
         fim # framebuffer image viewer
         lynx # terminal web browser
-        osquery # OS instrumentation and intrusion detection
         sshpass # non-interactive SSH password
         gsocket # global socket relay
         speedtest-cli # internet speed test
