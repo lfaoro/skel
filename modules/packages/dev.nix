@@ -54,7 +54,6 @@ in
         zls # Zig LSP
         vscode-langservers-extracted # HTML/JS/CSS/JSON LSP
         marksman # Markdown LSP
-        python312Packages.python-lsp-server # Python LSP
         typescript-language-server # TypeScript LSP
 
         gotests # generate Go tests

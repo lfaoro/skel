@@ -64,6 +64,8 @@ wrap-at-text-width = false
 C-d = ["vsplit", "jump_view_up", "goto_definition"]
 
 [keys.normal]
+q = [":quit"]
+C-q = [":quit!"]
 C-space = ["completion"]
 C-o = ["jump_backward"]
 C-i = ["jump_forward"]
@@ -90,7 +92,7 @@ Y = "yank_main_selection_to_clipboard"
 C-ret = ["open_above", "normal_mode"]
 ret = ["open_below", "normal_mode"]
 C-s = [":write"]
-C-q = [":quit"]
+C-x = [":buffer-close"]
 
 [keys.normal.space]
 e = [
@@ -102,11 +104,7 @@ e = [
 ]
 l = [":sh echo -n '%{buffer_name}:%{cursor_line}' | xclip -selection clipboard"]
 z = ":toggle gutters.line-numbers.min-width 48 0"
-r = ":run-shell-command go run *.go"
-m = ":run-shell-command make"
-t = ":run-shell-command go test -v ./..."
-q = [":quit"]
-Q = [":quit!"]
+q = [":quit!"]
 w = [":write", ":quit-all"]
 c = [":buffer-close-others", "wonly"]
 x = [":buffer-close", "wonly"]

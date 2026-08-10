@@ -5,6 +5,11 @@ with lib.hm.gvariant;
 
 {
   dconf.settings = {
+    "org.gnome.shell.keybindings" = {
+      show-screenshot-ui = [ "<Alt><Control>3" ];
+      screenshot-window = [ "<Alt><Control>4" ];
+    };
+
     "apps/update-manager" = {
       first-run = false;
       launch-count = 16;

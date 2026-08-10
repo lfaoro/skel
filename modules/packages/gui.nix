@@ -17,7 +17,7 @@ in
         qbittorrent # BitTorrent client
         telegram-desktop # Telegram messenger
         monero-gui # Monero wallet
-        feather # Monero desktop wallet
+        # feather # Monero desktop wallet
         bruno # API client
         meld # visual diff/merge tool
         brave # Brave browser (policy installed by bin/install.sh when GUI)
