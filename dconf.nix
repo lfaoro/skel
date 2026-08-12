@@ -142,6 +142,8 @@ with lib.hm.gvariant;
     "org/gnome/desktop/wm/keybindings" = {
       switch-group = [ "<Super>grave" ];
       switch-group-backward = [ "<Shift><Super>grave" ];
+      switch-to-workspace-left = [ ];
+      switch-to-workspace-right = [ ];
     };
 
     "org/gnome/desktop/wm/preferences" = {
