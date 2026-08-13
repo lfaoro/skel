@@ -1,38 +1,36 @@
 # shellcheck shell=bash
 # ── Misc aliases ──────────────────────────────────────────────────────
 alias cpu='top -bn 1 -i -c'
-alias detect-audio='pacmd unload-module module-udev-detect && pacmd load-module module-udev-detect'
-alias .='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+alias detect-audio='pactl unload-module module-udev-detect 2>/dev/null; pactl load-module module-udev-detect'
+alias fz='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
 alias bathelp='bat --plain --language=help'
 alias genpwd='openssl rand -base64 18 | tee /dev/tty | wl-copy'
-alias tb='nc termbin.com 9999 | xclip -sel c'
+alias pst='nc termbin.com 9999 | copy'
 alias rsync='rsync -av --progress'
 alias ssh='TERM=xterm-256color ssh'
 alias edkeygen='ssh-keygen -t ed25519 -a 100 -C'
-alias sudo='sudo TERM=xterm-256color'
+alias temp='cd "$(mktemp -d)"'
 
 # ── Containers ───────────────────────────────────────────────────────
-alias p='podman'
 alias k='kubectl'
-alias d='docker'
+alias pod='podman'
+alias dock='docker'
 
 # ── Git ──────────────────────────────────────────────────────────────
 alias gs='git status'
-alias gc='git commit -m'
 alias ga='git add'
-alias gd='git diff --unified=5 --diff-filter=M'
-alias gds='git diff --staged --unified=5 --diff-filter=M'
+alias gd='git diff --unified=5'
+alias gds='git diff --staged --unified=5'
 alias gp='git push'
-alias gpu='git pull'
+alias gpl='git pull'
+alias gcom='git commit -m'
 alias gl='git log --stat'
 
 # ── Modern replacements ─────────────────────────────────────────────
 alias ls='eza'
 alias l='eza -as modified --group-directories-first'
-alias ll='eza --git -lahgs modified --group-directories-first -s extension -o'
+alias ll='eza --git -lahgs modified --group-directories-first -o'
 alias t='eza --tree --level=2'
-alias tt='eza --tree --level=4'
-alias ttt='eza --tree --level=6'
 alias grep='rg'
 alias rg='rg -uuui'
 alias calc='kalker'
@@ -47,6 +45,9 @@ copy() {
 		xclip -sel c "$@"
 	elif command -v xsel >/dev/null 2>&1; then
 		xsel -bi "$@"
+	else
+		echo "copy: no clipboard tool found (need wl-copy, xclip, or xsel)" >&2
+		return 1
 	fi
 }
 alias clip=copy
@@ -65,6 +66,8 @@ alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 
 # ── Functions ─────────────────────────────────────────────────────────
 
+sudo() { command sudo TERM=xterm-256color "$@"; }
+
 run() { nix run "nixpkgs#$1" -- "${@:2}"; }
 
 upgrade() (
@@ -82,7 +85,9 @@ clean() (
 	sudo journalctl --vacuum-time=7d
 	sudo apt autoremove
 	sudo apt autoclean
-	dpkg -l | awk '/^rc/{print $2}' | xargs -r sudo apt purge -y
+	while read -r pkg; do
+		sudo apt purge -y "$pkg" || true
+	done < <(dpkg -l | awk '/^rc/{print $2}')
 	nix-collect-garbage -d
 	nix-store --optimise 2>&1 | grep -v 'skipping suspicious writable file'
 	snap_clean
