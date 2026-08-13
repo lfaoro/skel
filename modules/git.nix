@@ -56,6 +56,11 @@ in
       line-numbers = true;
       navigate = true;
       side-by-side = false;
+      # PAGER=bat is exported globally and delta honors $PAGER, but bat renders
+      # once and doesn't reflow on window resize. Delta does the syntax
+      # highlighting itself (syntect, Catppuccin Mocha); less -R renders its
+      # ANSI colors and reflows on resize.
+      pager = "less -R";
     };
   };
 
