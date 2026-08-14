@@ -112,6 +112,11 @@ key = "Semicolon"
 mods = "Control"
 chars = "\u001b;"
 
+[bell]
+# Alacritty defaults to `command = "None"` (silent). Set it to a program that
+# plays the system alert sound so the terminal bell (BEL, \a) is audible.
+command = { program = "canberra-gtk-play", args = ["-i", "window-attention"] }
+
 [mouse]
 # hide_when_typing = true
 bindings = [
