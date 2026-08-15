@@ -154,7 +154,6 @@ in
     enable = true;
     dotDir = "${config.xdg.configHome}/zsh";
     autocd = true;
-    enableCompletion = false;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     defaultKeymap = "emacs";
