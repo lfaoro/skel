@@ -22,7 +22,7 @@ nix-locate <pkg-or-file>            # fast offline Nix package search (~40MB ind
 - **`bin/encrypto.sh`** is dual-use (sourced or executed). When sourced, only `encrypt()` and `decrypt()` enter the shell environment. Never export `usage()` or `die()`.
 - **Package installation** is done via `modules/packages/` (imported from home.nix) — never `nix-env -i` or `nix profile install`
 - **`config.nix`** is gitignored per-user settings — do not commit, do not hardcode values
-- **Go comes from [go-overlay](https://github.com/purpleclay/go-overlay)** (`pkgs.go-bin.latestStable`), not nixpkgs' `go` — overlay applied in `home.nix`, channel added in `bin/install.sh`
+- **Go comes from [go-overlay](https://github.com/purpleclay/go-overlay)** (`pkgs.go-bin.latestStable.withDefaultTools`), not nixpkgs' `go` — overlay + Cachix cache in `home.nix`, channel in `bin/install.sh`; coupled leftovers (`goimports`, `golines`, `gosec`, `garble`) via `bin/i-gotools.sh`
 - **Tilish default** is `main-vertical` layout, `enforce` is `none`
 - **tmux prefix** is `M-;` (Alt+;), not C-b
 - **tmux reload**: `prefix :source-file ~/.tmux.conf`

@@ -6,52 +6,26 @@ if ! command -v go &>/dev/null; then
 	exit 1
 fi
 
-# ── Language servers ─────────────────────────────────────────────────
-go install golang.org/x/tools/gopls@latest
-go install github.com/bufbuild/buf-language-server/cmd/bufls@latest
-go install github.com/leona/helix-assist/cmd/helix-assist@latest
+# ──────────────────────────────────────────────────────────────────────
+# Go-version-coupled tools that neither go-overlay nor nixpkgs ship
+# prebuilt for the installed toolchain. Built with `go install` so they
+# are compiled against the active Go version.
+#
+# Everything else lives in home.nix:
+#   - go-bin.latestStable.withDefaultTools → gopls, dlv, golangci-lint,
+#     staticcheck, gofumpt, govulncheck (version-locked, Cachix-cached)
+#   - modules/packages/dev.nix → standalone tools (buf, sqlc, grpcurl, …)
+# ──────────────────────────────────────────────────────────────────────
 
-# ── Debugger ─────────────────────────────────────────────────────────
-go install github.com/go-delve/delve/cmd/dlv@latest
-
-# ── Formatters ───────────────────────────────────────────────────────
-go install mvdan.cc/gofumpt@latest
+# Formatters (parse Go source → must match the Go version)
 go install golang.org/x/tools/cmd/goimports@latest
 go install github.com/segmentio/golines@latest
 
-# ── Linters ──────────────────────────────────────────────────────────
-go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest
-go install honnef.co/go/tools/cmd/staticcheck@latest
-
-# ── Protobuf & gRPC ──────────────────────────────────────────────────
-go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
-go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
-go install github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc@latest
-go install github.com/bufbuild/buf/cmd/buf@latest
-go install connectrpc.com/connect/cmd/protoc-gen-connect-go@latest
-go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest
-go install github.com/bojand/ghz/cmd/ghz@latest
-
-# ── Database ─────────────────────────────────────────────────────────
-go install github.com/sqlc-dev/sqlc/cmd/sqlc@latest
-
-# ── Security ─────────────────────────────────────────────────────────
+# Security linter (go/ast + go/types based)
 go install github.com/securego/gosec/v2/cmd/gosec@latest
 
-# ── Dev tools ────────────────────────────────────────────────────────
-go install github.com/air-verse/air@latest
-go install github.com/goreleaser/goreleaser/v2@latest
-go install github.com/boyter/scc/v3@latest
-
-# ── Misc ─────────────────────────────────────────────────
-go install github.com/peterldowns/nix-search-cli/cmd/nix-search@latest
-
-# ── Screen recording ─────────────────────────────────────────────────
-go install github.com/charmbracelet/vhs@latest
-
-# ── Obfuscation ──────────────────────────────────────────────────────
+# Build obfuscator (compiler wrapper → must match the exact Go minor)
 go install mvdan.cc/garble@latest
 
-# ── Telemetry ────────────────────────────────────────────────────────
-go install golang.org/x/telemetry/cmd/gotelemetry@latest
-gotelemetry off
+# Telemetry is disabled via the builtin (no gotelemetry binary needed)
+go telemetry off

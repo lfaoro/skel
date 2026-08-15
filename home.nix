@@ -57,6 +57,16 @@ in
     "nix-command"
     "flakes"
   ];
+  # Prebuilt go-overlay toolchains/tools are served from their public Cachix
+  # cache, so withDefaultTools (gopls, dlv, golangci-lint, …) is a cache hit.
+  nix.settings.substituters = [
+    "https://cache.nixos.org"
+    "https://go-overlay.cachix.org"
+  ];
+  nix.settings.trusted-public-keys = [
+    "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+    "go-overlay.cachix.org-1:rJ155O3K6WUyUcoKE4MqcC6JcLlK2vPXnP5/76BxWD8="
+  ];
 
   xdg.enable = true;
   xdg.mime.enable = true;

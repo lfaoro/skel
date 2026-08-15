@@ -11,7 +11,20 @@ in
     if configOpt.useDevTools then
       with pkgs;
       [
-        go-bin.latestStable # Go compiler (go-overlay, latest stable from go.dev)
+        (go-bin.latestStable.withDefaultTools) # Go + version-locked gopls, dlv, golangci-lint, staticcheck, gofumpt, govulncheck
+        protoc-gen-go # Standalone Go tools (Go-version independent; prebuilt from nixpkgs)
+        protoc-gen-go-grpc
+        protoc-gen-connect-go
+        protoc-gen-doc
+        buf
+        grpcurl
+        ghz
+        sqlc
+        air
+        goreleaser
+        scc
+        nix-search-cli
+        vhs
         protobuf # Protocol Buffers compiler
         upx # executable packer
         postgresql # PostgreSQL database
