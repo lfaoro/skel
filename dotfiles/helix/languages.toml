@@ -47,6 +47,10 @@ args = ["lsp", "stdio"]
 command = "yaml-language-server"
 args = ["--stdio"]
 
+[language-server.bufls]
+command = "bufls"
+args = ["serve"]
+
 [[language]]
 name = "go"
 auto-format = true
@@ -54,6 +58,11 @@ file-types = ["go"]
 language-servers = ["gopls"]
 formatter = ["goimports"]
 diagnostic-severity = "hint"
+
+[[language]]
+name = "protobuf"
+file-types = ["proto"]
+language-servers = ["bufls"]
 
 [[language]]
 name = "markdown"
