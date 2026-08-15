@@ -1,5 +1,5 @@
 # theme = "leo"
-theme = "catpuccin_mocha"
+theme = "catppuccin_mocha"
 
 [editor]
 auto-format = true

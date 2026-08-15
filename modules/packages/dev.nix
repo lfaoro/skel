@@ -49,6 +49,7 @@ in
 
         taplo # TOML formatter
         black # Python formatter
+        pyright # Python LSP (type checker)
         prettierd # JS/TS/CSS/JSON formatter
         harper # grammar checker
 

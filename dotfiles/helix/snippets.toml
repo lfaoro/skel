@@ -3,6 +3,7 @@ name = "Print to console"
 trigger = "ll"
 body = ["fmt.Println(${1:message})"]
 description = "Log a message to the console"
+language = "go"
 
 [[snippets]]
 name = "if err != nil { return err }"
