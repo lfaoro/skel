@@ -14,6 +14,7 @@
     fd # fast find replacement
     bat # cat with syntax highlighting
     eza # modern ls
+    lr # recursive lister (ls/find/stat/du)
     zoxide # smarter cd command
     jq # JSON processor
     curl # URL transfer tool

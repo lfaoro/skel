@@ -36,6 +36,8 @@ alias rg='rg -uuui'
 alias calc='kalker'
 alias fd='fd -IH'
 alias duf='duf --hide-fs tmpfs,devtmpfs'
+alias lrl="lr -t 'type == f' -oS -f '%S %p\n'"  # largest files first
+alias lrd="lr -D -t 'type == d' -f '%I%t %p\n'"  # indented directory sizes
 
 # ── Clipboard ────────────────────────────────────────────────────────
 copy() {
