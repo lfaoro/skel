@@ -159,7 +159,7 @@ with lib.hm.gvariant;
     "org/gnome/settings-daemon/plugins/power" = {
       idle-dim = false;
       power-button-action = "suspend";
-      power-saver-profile-on-low-batter = true;
+      power-saver-profile-on-low-battery = true;
       sleep-inactive-ac-timeout = 7200;
       sleep-inactive-ac-type = "suspend";
       sleep-inactive-battery-type = "suspend";

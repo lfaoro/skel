@@ -22,10 +22,10 @@ sudo chown -R "$USER:$USER" .
 curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info | tic -x - 2>/dev/null || true
 command -v localectl &>/dev/null && sudo localectl set-locale LANG=en_US.UTF-8 2>/dev/null || true
 
-mkdir -p ~/.sec && touch ~/.sec/keys
+mkdir -p ~/.sec && touch ~/.sec/keys && chmod 600 ~/.sec/keys
 
-  git_name=$(git config --global user.name 2>/dev/null || echo "$USER")
-  git_email=$(git config --global user.email 2>/dev/null || echo "${USER}@$(hostname 2>/dev/null || echo localhost)")
+git_name=$(git config --global user.name 2>/dev/null || echo "$USER")
+git_email=$(git config --global user.email 2>/dev/null || echo "${USER}@$(hostname 2>/dev/null || echo localhost)")
 
 if [[ ! -e "./config.nix" ]]; then
   if [[ -t 0 ]]; then
@@ -109,12 +109,4 @@ if command -v git &>/dev/null && [[ ! -d ~/.tmux/plugins/tpm || -z "$(ls -A ~/.t
   rm -rf ~/.tmux/plugins/tpm
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   ~/.tmux/plugins/tpm/bin/install_plugins
-fi
-
-if gui_enabled; then
-  nix-env -iA nixgl.auto.nixGLDefault 2>/dev/null || true
-fi
-
-if yes_no "$cfg_caps"; then
-  ./bin/caps2ctrl.sh || :
 fi

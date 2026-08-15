@@ -131,14 +131,14 @@ gpg_dec() { gpg -d; }
 path() { echo -e "${PATH//:/\\n}"; }
 
 hssh() {
-	local ttyp
+	local ttyp a
 	ttyp=$(stty -g)
+	trap 'stty "$ttyp" 2>/dev/null' EXIT INT TERM
 	stty raw -echo opost
 	[[ $(ssh -V 2>&1) == OpenSSH_[67]* ]] && a="no"
 	ssh -o UpdateHostKeys=no -o StrictHostKeyChecking="${a:-accept-new}" -T \
 		"$@" \
 		"unset SSH_CLIENT SSH_CONNECTION; TERM=xterm-256color BASH_HISTORY=/dev/null exec -a [ntp] script -qc 'exec -a [uid] /bin/bash -i' /dev/null"
-	stty "${ttyp}"
 }
 
 batdiff() {
@@ -154,7 +154,16 @@ sr() {
 		echo "must provide search replace args"
 		return 1
 	fi
-	rg --files-with-matches --fixed-strings "${search}" | xargs sed -i "s#${search}#${replace}#g"
+	# `command rg` bypasses the `rg -uuui` alias so sr() respects
+	# ripgrep's git-aware defaults (no binaries/ignored files).
+	command rg --files-with-matches --fixed-strings "${search}" | xargs sed -i "s#${search}#${replace}#g"
+}
+
+# lynx with the config env (also exported in home.nix) and a desktop UA
+lynx() {
+	command lynx \
+		--useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_0) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/21.0.1180.79 Safari/537.1 Lynx" \
+		"$@"
 }
 
 catFunc() (

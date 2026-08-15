@@ -3,7 +3,7 @@
 #
 # Encrypt/decrypt a tarball using openssl with a generated password.
 #
-# Usage (direct):  ./encrypto.sh encrypt <dir> [password]
+# Usage (direct):  ./encrypto.sh encrypt <dir>
 #                  ./encrypto.sh decrypt <file.enc> <password>
 # Usage (sourced): encrypt <dir>
 #                  decrypt <file.enc> <password>
@@ -90,7 +90,7 @@ if [[ "${BASH_SOURCE[0]:-}" == "${0}" ]]; then
 
   usage() {
     cat >&2 <<-EOF
-	Usage (direct):  $0 encrypt <directory_or_file> [password]
+	Usage (direct):  $0 encrypt <directory_or_file>
 	                 $0 decrypt <file.enc> <password>
 	Usage (sourced): encrypt <directory_or_file>
 	                 decrypt <file.enc> <password>

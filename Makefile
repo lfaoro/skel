@@ -21,7 +21,7 @@ help:
 	@echo "Before committing: make all"
 
 fmt:
-	$(NIXFMT) home.nix dconf.nix
+	$(NIXFMT) $$(find . -name '*.nix' -not -path './scratch/*' -not -path './tmp/*')
 
 lint:
 	$(SHELLCHECK) bin/*.sh shell/.aliasrc

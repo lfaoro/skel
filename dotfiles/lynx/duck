@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
-
-lynx "https://lite.duckduckgo.com/lite/?q=$*&kp=-2&kl=us-en&kaf=1&kae=d&k1=-1"
-
+# DuckDuckGo (lite) search via lynx
+query="${*// /+}"
+exec lynx "https://lite.duckduckgo.com/lite/?q=${query}&kp=-2&kl=us-en&kaf=1&kae=d&k1=-1"

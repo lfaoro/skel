@@ -1,4 +1,4 @@
 #!/usr/bin/env zsh
-
-lynx "https://github.com/search?q=$*&type=repositories"
-
+# GitHub repository search via lynx
+query="${*// /+}"
+exec lynx "https://github.com/search?q=${query}&type=repositories"

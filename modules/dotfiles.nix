@@ -13,7 +13,6 @@
 { config, lib, ... }:
 
 let
-  configOpt = import ../config.nix;
   skelRoot = "${config.home.homeDirectory}/skel";
 
   symlinkDot = _: skelPath: {
@@ -22,13 +21,7 @@ let
 
   dotfileMap = {
     ".config/alacritty" = "dotfiles/alacritty";
-  }
-  // lib.optionalAttrs configOpt.useOsquery {
-    ".config/osquery" = "dotfiles/osquery";
-  }
-  // {
     ".config/yazi" = "dotfiles/yazi";
-    ".config/gitui" = "dotfiles/gitui";
     ".config/lazygit" = "dotfiles/lazygit";
     ".config/ghostty" = "dotfiles/ghostty";
     ".config/rmpc" = "dotfiles/rmpc";
@@ -37,6 +30,9 @@ let
     ".config/lynx/lynx.cfg" = "dotfiles/lynx/lynx.cfg";
     ".config/lynx/lynx.lss" = "dotfiles/lynx/lynx.lss";
     ".tmux.conf" = "dotfiles/tmux/.tmux.conf";
+    ".local/bin/duck" = "dotfiles/lynx/duck";
+    ".local/bin/sgh" = "dotfiles/lynx/sgh";
+    ".local/bin/snixpkg" = "dotfiles/lynx/snixpkg";
   };
 in
 {

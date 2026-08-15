@@ -14,11 +14,11 @@
 # hardening flags + useful extensions. It is intentionally kept separate so
 # it can be enabled on demand without cluttering the main configuration.
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   # Only apply nixGL wrapper when the GUI toggle is enabled (matches install.sh behavior)
-  useGUI = config.useGUI or false;
+  useGUI = (import ../config.nix).useGUI;
 in
 {
   programs.brave = {

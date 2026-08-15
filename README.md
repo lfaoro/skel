@@ -23,15 +23,15 @@ Install miscellaneous CLI tools (jump, lynx, etc.)? [y/N]:
 Remap Caps Lock to Ctrl? [y/N]:
 ```
 
-All defaults are conservative (off). You can re-run or edit `config.nix` anytime later. Noninteractive runs (e.g. piped) silently default to all-off. When GUI is enabled, install also sets up nixGL and Brave browser policy.
+All defaults are conservative (off). You can re-run or edit `config.nix` anytime later. Noninteractive runs (e.g. piped) silently default to all-off. When GUI is enabled, install also registers the nixGL channel and applies the Brave browser policy.
 
 ## What's Configured
 
 - **Shell**: Zsh with aliases, autosuggestion, syntax highlighting, fzf, zoxide
-- **Editor**: Helix with LSPs (Go, Rust, Python, TS, Bash, YAML, Nix, Markdown)
+- **Editor**: Helix with LSPs (Go, Rust, Python, TS/JS, JSON, TOML, YAML, Markdown, Protobuf)
 - **Terminal**: Alacritty (primary), Ghostty
 - **Multiplexer**: tmux with tilish layout (`M-;` prefix, `main-vertical`)
-- **Git**: gitui, delta diff, lazygit, GPG signing
+- **Git**: delta diff, lazygit, GPG signing
 - **File manager**: yazi
 - **System**: systemd user services (cron jobs, mosh, syncthing)
 - **Fonts**: Hack Nerd Font, Fira Code Nerd Font, Noto Emoji
@@ -49,7 +49,7 @@ Edit `config.nix` (gitignored) before applying:
   useDconf     = true;  # GNOME dconf settings
   useGUI         = true;  # GUI apps (KeePassXC, Telegram, Brave, etc.)
   useNetworkTools = false; # nmap, tshark, etc.
-  useMisc        = false; # jump, lynx, osquery, etc.
+  useMisc        = false; # jump, lynx, etc.
 
   gitName          = "Your Name";
   gitEmail         = "you@example.com";

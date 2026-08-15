@@ -1,11 +1,25 @@
-# This is a thin wrapper so that `theme = catppuccin-mocha` works
-# (the common Catppuccin slug name used elsewhere in this dotfiles).
-#
-# It simply includes the built-in Ghostty Catppuccin Mocha theme.
-# The built-in lives in the snap resources.
-#
-# This file lives in dotfiles so it's managed declaratively.
-# After adding this, run `home-manager switch` (or at least the activation)
-# so the ~/.config/ghostty/themes/ directory gets the file via the home-manager-files generation.
-
-config-file = /snap/ghostty/current/share/ghostty/themes/Catppuccin Mocha
+# Catppuccin Mocha — vendored inline so the theme works regardless of how
+# Ghostty is installed (nixpkgs, snap, apt, …). The slug `catppuccin-mocha`
+# matches our tmux/alacritty theme; `theme = catppuccin-mocha` in config
+# resolves this file from ~/.config/ghostty/themes/.
+background = #1e1e2e
+foreground = #cdd6f4
+cursor-color = #f5e0dc
+selection-background = #585b70
+selection-foreground = #cdd6f4
+palette = 0=#45475a
+palette = 1=#f38ba8
+palette = 2=#a6e3a1
+palette = 3=#f9e2af
+palette = 4=#89b4fa
+palette = 5=#f5c2e7
+palette = 6=#94e2d5
+palette = 7=#bac2de
+palette = 8=#585b70
+palette = 9=#f38ba8
+palette = 10=#a6e3a1
+palette = 11=#f9e2af
+palette = 12=#89b4fa
+palette = 13=#f5c2e7
+palette = 14=#94e2d5
+palette = 15=#a6adc8

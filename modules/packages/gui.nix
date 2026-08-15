@@ -11,6 +11,8 @@ in
     if configOpt.useGUI then
       with pkgs;
       [
+        alacritty # GPU-accelerated terminal
+        ghostty # GPU-accelerated terminal
         libcanberra-gtk3 # GTK sound event wrapper
         dconf-editor # dconf settings GUI
         keepassxc # password manager

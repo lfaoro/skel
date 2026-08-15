@@ -80,7 +80,10 @@ in
     ++ config.myPackages.dev
     ++ config.myPackages.network
     ++ config.myPackages.misc
-    ++ config.myPackages.core;
+    ++ config.myPackages.core
+    # nixGL wrapper for running nixpkgs GUI apps on non-NixOS (channel added
+    # by bin/install.sh when useGUI). Provides the `nixGL` command.
+    ++ (lib.optionals configOpt.useGUI [ (import <nixgl> { }).auto.nixGLDefault ]);
 
   # ── Dotfiles ───────────────────────────────────────────────────────
 
@@ -99,7 +102,7 @@ in
     BAT_THEME = "Catppuccin Mocha";
 
     DOT = "$HOME/skel";
-    WWW_HOME = "https://lite.duckduckgo.com/lite/?kae=d&kp=-2&kz=-1&kav=1&kaj=m&kau=-1&kaq=-1&kap=-1&kao=-1&kax=-1&kak=-1&kay=b&k1=-1&q=$1";
+    WWW_HOME = "https://lite.duckduckgo.com/lite/?kae=d&kp=-2&kz=-1&kav=1&kaj=m&kau=-1&kaq=-1&kap=-1&kao=-1&kax=-1&kak=-1&kay=b&k1=-1";
     LYNX_CFG = "$HOME/.config/lynx/lynx.cfg";
     LYNX_LSS = "$HOME/.config/lynx/lynx.lss";
 
@@ -208,7 +211,6 @@ in
     profiles.default.userSettings = {
     };
     profiles.default.extensions = [
-      pkgs.vscode-extensions.github.copilot
       pkgs.vscode-extensions.tuttieee.emacs-mcx
       pkgs.vscode-extensions.golang.go
       pkgs.vscode-extensions.redhat.vscode-yaml
