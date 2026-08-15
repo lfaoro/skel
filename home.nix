@@ -44,6 +44,11 @@ in
 
   programs.home-manager.enable = true;
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [
+    # Fresh Go toolchains (updated within hours of go.dev releases) instead of
+    # nixpkgs-unstable's `go`. Channel is registered in bin/install.sh.
+    (import <go-overlay>)
+  ];
 
   targets.genericLinux.enable = true;
 

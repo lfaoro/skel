@@ -84,6 +84,9 @@ nix-channel --add https://channels.nixos.org/nixpkgs-unstable nixpkgs 2>/dev/nul
 nix-channel --add \
   https://github.com/nix-community/home-manager/archive/master.tar.gz \
   home-manager 2>/dev/null || true
+nix-channel --add \
+  https://github.com/purpleclay/go-overlay/archive/main.tar.gz \
+  go-overlay 2>/dev/null || true
 
 if gui_enabled; then
   nix-channel --add https://github.com/nix-community/nixGL/archive/main.tar.gz nixgl 2>/dev/null || true

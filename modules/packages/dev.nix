@@ -11,7 +11,7 @@ in
     if configOpt.useDevTools then
       with pkgs;
       [
-        go # Go compiler
+        go-bin.latestStable # Go compiler (go-overlay, latest stable from go.dev)
         protobuf # Protocol Buffers compiler
         upx # executable packer
         postgresql # PostgreSQL database
