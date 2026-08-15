@@ -47,9 +47,9 @@ args = ["lsp", "stdio"]
 command = "yaml-language-server"
 args = ["--stdio"]
 
-[language-server.bufls]
-command = "bufls"
-args = ["serve"]
+[language-server.buf]
+command = "buf"
+args = ["lsp", "serve"]
 
 [[language]]
 name = "go"
@@ -62,7 +62,7 @@ diagnostic-severity = "hint"
 [[language]]
 name = "protobuf"
 file-types = ["proto"]
-language-servers = ["bufls"]
+language-servers = ["buf"]
 
 [[language]]
 name = "markdown"

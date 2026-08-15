@@ -17,9 +17,6 @@ fi
 #   - modules/packages/dev.nix → standalone tools (buf, sqlc, grpcurl, …)
 # ──────────────────────────────────────────────────────────────────────
 
-# Protobuf language server (not in nixpkgs/go-overlay; wired in helix)
-go install github.com/bufbuild/buf-language-server/cmd/bufls@latest
-
 # Formatters (parse Go source → must match the Go version)
 go install golang.org/x/tools/cmd/goimports@latest
 go install github.com/segmentio/golines@latest
