@@ -30,10 +30,10 @@ functionTypeParameters = true
 [language-server.marksman]
 command = "marksman"
 
-[language-server.harper]
-command = "harper-ls"
-args = ["--stdio"]
-config = {}
+# [language-server.harper]
+# command = "harper-ls"
+# args = ["--stdio"]
+# config = {}
 
 [language-server.taplo]
 command = "taplo"
