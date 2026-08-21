@@ -29,8 +29,8 @@ in
         upx # executable packer
         postgresql # PostgreSQL database
 
-        # rustc # Rust compiler
-        # cargo # Rust package manager
+        rustc # Rust compiler
+        cargo # Rust package manager
         # rust-analyzer # Rust LSP
         # rustfmt # Rust formatter
         # zig # Zig compiler
