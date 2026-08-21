@@ -13,5 +13,5 @@ dotfiles/tmux/*
 dotfiles/helix/runtime
 
 # old paths (prior to reorg)
-tmux/
+/tmux/
 home/
