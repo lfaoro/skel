@@ -1,8 +1,8 @@
 # Catppuccin Mocha to match Alacritty + tmux setup.
-# Ghostty ships with built-in Catppuccin themes (resources).
-# We use the slug "catppuccin-mocha" (common in the Catppuccin ecosystem
-# and matching our tmux/alacritty). This works because we provide a thin
-# wrapper file in themes/catppuccin-mocha that includes the real built-in.
+# The slug "catppuccin-mocha" (common in the Catppuccin ecosystem and
+# matching our tmux/alacritty) resolves to the vendored theme file in
+# themes/catppuccin-mocha, so it works regardless of how Ghostty is
+# installed (nixpkgs, snap, apt, ...).
 theme = catppuccin-mocha
 # theme = Dracula
 
@@ -18,7 +18,6 @@ font-feature = +ss01
 font-feature = +ss05
 font-feature = +calt
 
-window-colorspace = display-p3
 window-decoration = none
 
 # Remove default padding (2pt) so the terminal content uses the full window
@@ -26,8 +25,8 @@ window-decoration = none
 window-padding-x = 0
 window-padding-y = 0
 
-window-width = 999
-window-height = 999
+# Start maximized (matches Alacritty's startup_mode = "Maximized").
+maximize = true
 
 background-opacity = 0.99
 # Note: background-blur (not -radius) for modern Ghostty.
