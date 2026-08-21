@@ -28,7 +28,7 @@
     rlwrap # readline wrapper
     delta # syntax-highlighting diff
     difftastic # structural diff
-    yt-dlp # video downloader
+    # yt-dlp # video downloader
 
     duf # modern df
     htop # interactive process viewer
