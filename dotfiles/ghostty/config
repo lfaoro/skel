@@ -34,6 +34,26 @@ background-blur = 20
 
 cursor-opacity = 1
 cursor-style = block
+# Match Alacritty's cursor.blinking = "Never". Apps can still override
+# via DECSCUSR (CSI q), so tmux/Helix cursor styles keep working.
+cursor-style-blink = false
+
+# Match Alacritty's selection.save_to_clipboard = true: put selections on
+# the system clipboard (and the selection clipboard) instead of only the
+# selection clipboard. Middle-click paste always uses the selection
+# clipboard regardless.
+copy-on-select = clipboard
+
+# Match Alacritty's Super+C / Super+V copy/paste bindings.
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+
+# Hide the mouse while typing (matches Alacritty's commented-out
+# mouse.hide_when_typing).
+mouse-hide-while-typing = true
+
+# Restore window position/size across restarts.
+window-save-state = always
 
 # Replicate Alacritty's special Ctrl+; binding so that Ctrl+; triggers
 # tmux's prefix (bound to M-;) the same way Alt+; would. Alacritty does
