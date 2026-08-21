@@ -6,10 +6,10 @@
 theme = catppuccin-mocha
 # theme = Dracula
 
-# Make text selection (mouse or otherwise) use a yellow hue to match the
-# tmux copy-mode selection below. With background-opacity < 1 this appears
-# as a tinted/"transparent" highlight.
-selection-background = "#f9e2af"
+# Make text selection use the same hue as the cursor (Catppuccin Mocha
+# blue #89b4fa). With background-opacity < 1 this appears as a tinted/
+# "transparent" highlight.
+selection-background = "#89b4fa"
 selection-foreground = "#1e1e2e"
 
 font-family = "Hack Nerd Font Mono"
@@ -26,7 +26,12 @@ window-padding-x = 0
 window-padding-y = 0
 
 # Start maximized (matches Alacritty's startup_mode = "Maximized").
+# `maximize` is the proper option but is unreliable on GNOME (ghostty
+# discussion #10385), so also request a huge initial size that the WM
+# clamps to the screen — this is what reliably fills the display.
 maximize = true
+window-width = 999
+window-height = 999
 
 background-opacity = 0.99
 # Note: background-blur (not -radius) for modern Ghostty.
@@ -34,6 +39,8 @@ background-blur = 20
 
 cursor-opacity = 1
 cursor-style = block
+# Cursor color override (theme default is rosewater #f5e0dc).
+cursor-color = "#89b4fa"
 # Match Alacritty's cursor.blinking = "Never". Apps can still override
 # via DECSCUSR (CSI q), so tmux/Helix cursor styles keep working.
 cursor-style-blink = false
@@ -51,9 +58,6 @@ keybind = super+v=paste_from_clipboard
 # Hide the mouse while typing (matches Alacritty's commented-out
 # mouse.hide_when_typing).
 mouse-hide-while-typing = true
-
-# Restore window position/size across restarts.
-window-save-state = always
 
 # Replicate Alacritty's special Ctrl+; binding so that Ctrl+; triggers
 # tmux's prefix (bound to M-;) the same way Alt+; would. Alacritty does
