@@ -6,7 +6,7 @@ Prefix: `M-;` (Alt+;). Status-left shows `session_name[#sessions]` via `#{server
 
 | Op | Key | Source |
 |---|---|---|
-| Create session | `M-; C-t` | config |
+| Create session (auto-named: main, 2nd, 3rd, …) | `M-; C-t` | config → `bin/new-session.sh` |
 | Create session (yazi popup) | `M-; f` | config |
 | List + switch (fzf picker) | `M-; F` | tmux-fzf |
 | Next / prev session | `C-M-j` / `C-M-k` | config |
@@ -67,8 +67,5 @@ synchronize-panes. Use `M-; F` for list + switch.
 
 Optional extras:
 
-- Make `C-t` prompt for a name (`command-prompt -p "new session:" "new-session -s '%%'"`)
-  instead of creating unnamed numbered sessions — or keep quick-create and add
-  `M-; C-T` for named
 - From the shell, `tmux new -A -s name` attaches-or-creates — a nice habit
   for project sessions
