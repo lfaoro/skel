@@ -59,6 +59,12 @@ keybind = super+v=paste_from_clipboard
 # mouse.hide_when_typing).
 mouse-hide-while-typing = true
 
+# Touchpad (precision) scrolling is too fast vs. Alacritty: Ghostty
+# defaults to 1.0 for precision devices but applies a different scaling
+# path that feels jumpy in tmux/Helix. 0.5 halves the scroll distance for
+# finer control; wheel (discrete, default 3) is left untouched.
+mouse-scroll-multiplier = precision:0.5
+
 # Replicate Alacritty's special Ctrl+; binding so that Ctrl+; triggers
 # tmux's prefix (bound to M-;) the same way Alt+; would. Alacritty does
 # `chars = "\u001b;"` for `key = "Semicolon", mods = "Control"`.
