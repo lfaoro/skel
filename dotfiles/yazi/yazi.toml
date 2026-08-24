@@ -11,10 +11,4 @@ linemode = "none"
 max_width = 600
 tab_size = 2
 
-[opener]
-edit = [
-  { run = 'hx "$@"', block = true }
-]
-open = [
-  { run = 'xdg-open "$@"', desc = "Open with default app" }
-]
+# openers left at yazi defaults: edit → $EDITOR (hx), open → xdg-open
