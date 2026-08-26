@@ -6,6 +6,7 @@
   core = with pkgs; [
     helix # modal text editor
     tmux # terminal multiplexer
+    jump # jump to directories
 
     yazi # terminal file manager
     ueberzugpp # draw images on terminals

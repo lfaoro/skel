@@ -27,6 +27,7 @@ let
     ".config/rmpc" = "dotfiles/rmpc";
     ".config/helix" = "dotfiles/helix";
     ".config/htop" = "dotfiles/htop";
+    ".config/tridactyl/tridactylrc" = "dotfiles/tridactyl/tridactylrc";
     ".config/lynx/lynx.cfg" = "dotfiles/lynx/lynx.cfg";
     ".config/lynx/lynx.lss" = "dotfiles/lynx/lynx.lss";
     ".tmux.conf" = "dotfiles/tmux/.tmux.conf";

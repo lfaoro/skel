@@ -11,7 +11,7 @@ in
     if configOpt.useMisc then
       with pkgs;
       [
-        jump # jump to directories
+        asusctl
         elvish # expressive shell
         profanity # terminal XMPP client
         ticker # terminal stock ticker

@@ -1,0 +1,33 @@
+# Tridactyl rc — managed in this repo, symlinked by home-manager
+# (modules/dotfiles.nix) to ~/.config/tridactyl/tridactylrc.
+#
+# Loaded automatically at startup ONLY if the native messenger is installed
+# (run :nativeinstall in Tridactyl once). Without it, load manually with
+# `:source ~/.config/tridactyl/tridactylrc` after each restart.
+#
+# This is a snapshot from `:mktridactylrc --clipboard`; it is not kept in sync
+# with live changes — re-export to refresh.
+#
+# NOTE: the gnM/goM/gwM/gpM binds below open the hint-mode help page for the
+# `M` quickmark. They embed this machine's Tridactyl extension UUID
+# (moz-extension://91b30a46-…). That UUID only resolves on the profile where
+# it matches; on a fresh profile or reinstall it points at a dead URL.
+# Re-export per machine or drop these four binds if they aren't wanted.
+
+" General Settings
+set configversion 2.0
+set update.lastchecktime 1787684599758
+set newtab about:blank
+
+" Binds
+bind j scrollline 1
+bind k scrollline -1
+bind J tabnext
+bind K tabprev
+bind gnM tabopen moz-extension://91b30a46-9ee3-458f-a182-c8eab235961c/static/clippy/3-hint_mode.html
+bind goM open moz-extension://91b30a46-9ee3-458f-a182-c8eab235961c/static/clippy/3-hint_mode.html
+bind gwM winopen moz-extension://91b30a46-9ee3-458f-a182-c8eab235961c/static/clippy/3-hint_mode.html
+bind gpM winopen -private moz-extension://91b30a46-9ee3-458f-a182-c8eab235961c/static/clippy/3-hint_mode.html
+
+" For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
+" vim: set filetype=tridactyl
