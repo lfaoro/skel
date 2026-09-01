@@ -24,7 +24,6 @@ in
 
 {
   imports = lib.optionals configOpt.useDconf [ ./dconf.nix ] ++ [
-    ./services.nix
     ./modules/git.nix
     ./modules/syncthing.nix
     ./modules/packages
