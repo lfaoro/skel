@@ -20,6 +20,11 @@ font-feature = +calt
 
 window-decoration = none
 
+# Disable the Sparkle auto-update check (macOS-only feature; it fetches a
+# static appcast XML on launch). No-op on Linux but harmless, and keeps the
+# config phone-home-free if this file is ever reused on macOS.
+auto-update = off
+
 # Remove default padding (2pt) so the terminal content uses the full window
 # real estate. Matches the explicit zero padding in Alacritty config.
 window-padding-x = 0
