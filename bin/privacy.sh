@@ -134,8 +134,23 @@ sudo sysctl -p /etc/sysctl.d/99-privacy.conf
 ok "sysctl hardening applied (11 params)"
 
 # ── Disable broadcast services ─────────────────────────────────────────
-ok "avahi-daemon disabled"
-sudo systemctl disable --now avahi-daemon || :
+if [[ -f /etc/avahi/avahi-daemon.conf ]]; then
+  if grep -q '^disable-publishing=yes' /etc/avahi/avahi-daemon.conf; then
+    skip "avahi: mDNS publishing already disabled"
+  else
+    if grep -q '^#\?disable-publishing=' /etc/avahi/avahi-daemon.conf; then
+      sudo sed -i 's/^#\?disable-publishing=.*/disable-publishing=yes/' /etc/avahi/avahi-daemon.conf
+    elif grep -q '^\[server\]' /etc/avahi/avahi-daemon.conf; then
+      sudo sed -i '/^\[server\]/a disable-publishing=yes' /etc/avahi/avahi-daemon.conf
+    else
+      echo 'disable-publishing=yes' | sudo tee -a /etc/avahi/avahi-daemon.conf >/dev/null
+    fi
+    sudo systemctl restart avahi-daemon || :
+    ok "avahi: mDNS publishing disabled (browsing still enabled)"
+  fi
+else
+  skip "/etc/avahi/avahi-daemon.conf not found"
+fi
 ok "cups-browsed disabled"
 sudo systemctl disable --now cups-browsed || :
 
