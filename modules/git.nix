@@ -5,6 +5,7 @@
 #
 # This includes:
 # - programs.git (user.name/email from config.nix, aliases, signing, etc.)
+# - programs.gh (GitHub CLI, telemetry disabled, git_protocol + aliases)
 # - xdg git/ignore (global excludesfile, kept in sync with core.excludesfile)
 
 {
@@ -61,6 +62,21 @@ in
       # highlighting itself (syntect, Catppuccin Mocha); less -R renders its
       # ANSI colors and reflows on resize.
       pager = "less -R";
+    };
+  };
+
+  # GitHub CLI. gh ≥ v2.91 sends pseudonymous usage telemetry to GitHub
+  # unless opted out (github.blog changelog 2026-04-22); `telemetry =
+  # "disabled"` here is equivalent to `gh config set telemetry disabled`.
+  # Env vars in home.nix (GH_TELEMETRY) additionally cover non-login shells.
+  programs.gh = {
+    enable = true;
+    settings = {
+      # Ported from the previously hand-managed ~/.config/gh/config.yml
+      # (home-manager replaces that file once this is switched on).
+      git_protocol = "https";
+      aliases.co = "pr checkout";
+      telemetry = "disabled";
     };
   };
 

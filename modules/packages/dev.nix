@@ -73,7 +73,6 @@ in
         gotests # generate Go tests
         impl # generate Go interface implementations
         lazygit # terminal Git UI
-        gh # GitHub CLI
 
         kubo # IPFS in Go
 
