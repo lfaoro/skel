@@ -62,7 +62,7 @@ alias ip='ip --color=auto'
 alias '?=duck'
 alias note='$HOME/skel/bin/note.sh'
 alias todo='$HOME/skel/bin/note.sh todo'
-alias avocat="aichat -r avocat -s"
+
 alias -g -- -h='-h 2>&1 | bat --language=help --style=plain'
 alias -g -- --help='--help 2>&1 | bat --language=help --style=plain'
 

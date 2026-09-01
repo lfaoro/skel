@@ -16,7 +16,11 @@
 
 " General Settings
 set configversion 2.0
-set update.lastchecktime 1787684599758
+" updatecheck (auto_polite) queries addons.mozilla.org on browser start.
+" The `update.lastchecktime` snapshot below was making the check due every
+" start (frozen 2026-08-22); a ~63-year interval disables it. Tridactyl
+" updates are still manual via about:addons.
+set update.checkintervalsecs 2000000000
 set newtab about:blank
 
 " Binds

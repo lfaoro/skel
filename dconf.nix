@@ -28,8 +28,11 @@ with lib.hm.gvariant;
       window-width = 540;
     };
 
+    # update-notifier auto-opens update-manager every N days (checks
+    # apt/release servers). Large interval = effectively never; security
+    # patching stays available via the manual `upgrade()` in .aliasrc.
     "com/ubuntu/update-notifier" = {
-      regular-auto-launch-interval = 14;
+      regular-auto-launch-interval = 3650;
       release-check-time = mkUint32 1690739393;
     };
 
