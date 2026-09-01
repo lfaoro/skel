@@ -106,6 +106,16 @@ in
     LYNX_LSS = "$HOME/.config/lynx/lynx.lss";
 
     LANG = "en_US.UTF-8";
+
+    # Telemetry opt-outs (2026-09 audit):
+    # - gh ≥ v2.91 sends pseudonymous usage telemetry to GitHub unless opted
+    #   out (github.blog changelog 2026-04-22); env vars beat `gh config`.
+    # - trivy sends anonymous usage data to check.trivy.dev; env form of
+    #   `--disable-telemetry` (trivy.dev/docs .../advanced/telemetry).
+    # - DO_NOT_TRACK is the de-facto cross-CLI opt-out convention.
+    GH_TELEMETRY = "false";
+    TRIVY_DISABLE_TELEMETRY = "true";
+    DO_NOT_TRACK = "true";
   }
   // builtins.listToAttrs (
     map
